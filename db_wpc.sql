@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2023 at 03:27 PM
+-- Generation Time: Aug 29, 2023 at 04:06 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,6 +44,42 @@ INSERT INTO `annual_pay` (`id`, `name`, `status`, `entry_by`) VALUES
 (3, 'Marketing Manager', 1, 1),
 (4, 'Financial Analyst', 1, 1),
 (5, 'Mechanical Engineer', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `apply_job`
+--
+
+CREATE TABLE `apply_job` (
+  `id` int(11) NOT NULL,
+  `job_publish_id` int(11) DEFAULT NULL,
+  `job_title` varchar(255) DEFAULT NULL,
+  `candidate_name` varchar(255) DEFAULT NULL,
+  `candidate_address` varchar(255) DEFAULT NULL,
+  `candidate_email` varchar(255) DEFAULT NULL,
+  `candidate_num` varchar(255) DEFAULT NULL,
+  `total_year_exp` varchar(255) DEFAULT NULL,
+  `educa_qualifcation` text DEFAULT NULL,
+  `skill_set` text DEFAULT NULL,
+  `expeted_salary` varchar(255) DEFAULT NULL,
+  `files` varchar(255) DEFAULT NULL,
+  `application_date` date DEFAULT NULL,
+  `remarks` text DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `apply_job`
+--
+
+INSERT INTO `apply_job` (`id`, `job_publish_id`, `job_title`, `candidate_name`, `candidate_address`, `candidate_email`, `candidate_num`, `total_year_exp`, `educa_qualifcation`, `skill_set`, `expeted_salary`, `files`, `application_date`, `remarks`, `status`, `entry_by`, `created_at`) VALUES
+(2, 2, 'Senior BI Engineer', 'Bijon', 'Dhaka', 'mdbijon@gmail.com', '01915728982', '7 Yrs 5 Months', 'MSC', 'Soft Dev.', '5000', '/backend/files/JnT9wFEZM8JeK1gLjq4X.doc', '2023-08-29', '', 8, 1, '2023-08-29 10:44:24'),
+(3, 2, 'Senior BI Engineer', 'Kabir', 'Dhaka', 'kabir@gmail.com', '01915728983', '10 Yrs', 'MSC', 'TEST', '1050', '/backend/files/mURkiEiAo1NR9wFEJ2No.pdf', '2023-08-29', '', 2, 1, '2023-08-29 10:45:32'),
+(4, 2, 'Senior BI Engineer', 'Jannat', 'DHK', 'jannat@gmail.com', '01915728984', '10 Yrs', 'TEST', 'Computer', '50000', '/backend/files/FHSfhhsLtpUDx5w1yGaX.doc', '2023-08-29', NULL, 8, NULL, '2023-08-29 10:46:47'),
+(5, 1, 'Software Engineer', 'Kabir ahmed', 'DHK', 'karim@gmail.com', '01915728985', '10 Yrs', 'TEST', 'DK', '50000', '/backend/files/BEMMoAGUMb0lFvg49YPF.pdf', '2023-08-29', NULL, NULL, NULL, '2023-08-29 11:07:25');
 
 -- --------------------------------------------------------
 
@@ -839,6 +875,31 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `generate_offer_letter`
+--
+
+CREATE TABLE `generate_offer_letter` (
+  `id` int(11) NOT NULL,
+  `candidate_name` varchar(255) DEFAULT NULL,
+  `payment_type` varchar(255) DEFAULT NULL,
+  `offerd_salary` int(11) DEFAULT NULL,
+  `dateofjoining` date DEFAULT NULL,
+  `msg_body` text DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `generate_offer_letter`
+--
+
+INSERT INTO `generate_offer_letter` (`id`, `candidate_name`, `payment_type`, `offerd_salary`, `dateofjoining`, `msg_body`, `entry_by`, `created_at`) VALUES
+(1, 'Bijon', 'Hour', 545, '2023-08-17', '\n        Bijon\n        Greater London,England,London,United Kingdom ,SE18 4AT\n        2023-08-29\n        Transcend Global Ltd\n        Unit 5, Plumstead Business Centre,44 Plumstead High Street,London,SE18 1SL,United Kingdom\n        Dear MD Bijon,\n        Following your recent interview, I am writing to offer you the post of MARKETING DIRECTOR at the salary of 545 per Hour,\n        starting on 2023-08-17.\n        Full details of the post’s terms and conditions of employment are in your attached Employment Contract.\n        As explained during the interview, this job offer is made subject to satisfactory results from necessary pre-employment checks.\n        There will also be a probationary period of three months which will have to be completed satisfactorily.\n        This is a Full Time .On starting, you will report to Bijon.\n        If you have any queries on the contents of this letter, the attached Employment Contractor the pre-employment checks,\n        please do not hesitate to contact me on 007957165444.\n        To accept this offer, please sign and date the attached copy of this letter in the spaces indicated,\n        scan it in legible format and send it back to us by replying to rashed@transcendglobal.co.uk.\n        We are delighted to offer you this opportunity and look forward to you joining the organisation and working with you.\n        This letter is part of your contract of employment.\n        Yours sincerely,\n        Bijon\n        MARKETING DIRECTOR\n        I am very pleased to accept the job offer on the terms and conditions detailed in this letter and the Written\n        Statement of Terms and Conditions of Employment\n        Signed and date ………………………………………………………………………………………………\n        [Successful candidate to write their signature with date]\n        Name ……………………………………………………………………………………………………………….\n        [Successful candidate to print their full name in capital letters]', 1, '2023-08-29 19:01:02'),
+(2, 'Jannat', 'Day', 65000, '2023-09-01', '\n        Jannat\n        Greater London,England,London,United Kingdom ,SE18 4AT\n        2023-08-29\n        Transcend Global Ltd\n        Unit 5, Plumstead Business Centre,44 Plumstead High Street,London,SE18 1SL,United Kingdom\n        Dear MD Jannat,\n        Following your recent interview, I am writing to offer you the post of MARKETING DIRECTOR at the salary of 65000 per Day,\n        starting on 2023-09-01.\n        Full details of the post’s terms and conditions of employment are in your attached Employment Contract.\n        As explained during the interview, this job offer is made subject to satisfactory results from necessary pre-employment checks.\n        There will also be a probationary period of three months which will have to be completed satisfactorily.\n        This is a Full Time .On starting, you will report to Jannat.\n        If you have any queries on the contents of this letter, the attached Employment Contractor the pre-employment checks,\n        please do not hesitate to contact me on 007957165444.\n        To accept this offer, please sign and date the attached copy of this letter in the spaces indicated,\n        scan it in legible format and send it back to us by replying to rashed@transcendglobal.co.uk.\n        We are delighted to offer you this opportunity and look forward to you joining the organisation and working with you.\n        This letter is part of your contract of employment.\n        Yours sincerely,\n        Jannat\n        MARKETING DIRECTOR\n        I am very pleased to accept the job offer on the terms and conditions detailed in this letter and the Written\n        Statement of Terms and Conditions of Employment\n        Signed and date ………………………………………………………………………………………………\n        [Successful candidate to write their signature with date]\n        Name ……………………………………………………………………………………………………………….\n        [Successful candidate to print their full name in capital letters]', 1, '2023-08-29 19:30:56');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `joblist`
 --
 
@@ -907,8 +968,8 @@ CREATE TABLE `jobpost` (
 --
 
 INSERT INTO `jobpost` (`id`, `soc_code`, `job_title`, `department`, `job_code`, `job_description`, `employee_type`, `working_hour`, `job_exp_min`, `job_exp_max`, `basic_salary_min`, `basic_salary_max`, `peroid`, `number_of_vacanci`, `job_location`, `qualification`, `skill_set`, `age_min`, `age_max`, `gender`, `job_post_date`, `job_close_date`, `authrosi_officer`, `authrosi_officer_desg`, `contact_numb`, `email`, `role`, `lan_requirment`, `entry_by`, `created_at`) VALUES
-(1, '5988444', 'aa', 'sad', 'asd', 'sd', 'CONTRACTUAL', '1.5', '5', '5', '123', '', '3', '22', '22', '2df', 'sdf', '12', '22', '2', '2023-08-18', '2023-08-24', 'dsfsdf', 'sdf', 'sdf', 'we2022@gmail.com', 'Yes', 'English Proficiency - Minimum of  UKVI IELTS 4 or  equivalent for international candidates only', 1, '2023-08-18 11:35:23'),
-(2, '5989', 'sdf', 'sdf', 'sdf', 'sdf', 'FULL TIME', '4.5', '6', '6', '23', '', '2', '22', 'asdasd', 'ad', 'ad', 'asd', 'asd', '1', '2023-08-18', '2023-08-24', 'asd', 'asd', 'asd', 'a@gmail.com', 'Yes', 'Not Required', 1, '2023-08-18 11:36:55');
+(1, '120', 'aa', 'sad', 'asd', 'sd', 'CONTRACTUAL', '1.5', '5', '5', '123', '', '3', '22', '22', '2df', 'sdf', '12', '22', '2', '2023-08-18', '2023-08-24', 'dsfsdf', 'sdf', 'sdf', 'we2022@gmail.com', 'Yes', 'English Proficiency - Minimum of  UKVI IELTS 4 or  equivalent for international candidates only', 1, '2023-08-18 11:35:23'),
+(2, '121', 'sdf', 'sdf', 'sdf', 'sdf', 'FULL TIME', '4.5', '6', '6', '23', '', '2', '22', 'asdasd', 'ad', 'ad', 'asd', 'asd', '1', '2023-08-18', '2023-08-24', 'asd', 'asd', 'asd', 'a@gmail.com', 'Yes', 'Not Required', 1, '2023-08-18 11:36:55');
 
 -- --------------------------------------------------------
 
@@ -927,6 +988,7 @@ CREATE TABLE `jobpublish` (
   `publish_website_url_2` varchar(255) DEFAULT NULL,
   `file_2` varchar(255) NOT NULL,
   `entry_by` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 1,
   `created_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -934,11 +996,37 @@ CREATE TABLE `jobpublish` (
 -- Dumping data for table `jobpublish`
 --
 
-INSERT INTO `jobpublish` (`id`, `soc_code`, `job_title`, `department`, `job_description`, `publish_website_url_1`, `file_1`, `publish_website_url_2`, `file_2`, `entry_by`, `created_at`) VALUES
-(1, '12323111111111', 'aaaaa1111', 'asdasdaaa', 'asdad', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/h2sBUjpLytMEXpDuHZGL.png', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/h2sBUjpLytMEXpDuHZGL.png', '1', '2023-08-18 14:51:36'),
-(2, '45874878', 'sdfsdf', 'sdfsdf', 'dsfsdf', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/il2Rk4uQFLbe3K5EU6O4.png', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/oGKH29TxYVurrT6VKRow.jpg', '1', '2023-08-18 14:53:26'),
-(3, '123123', 'sad', 'asdasd', 'adasd', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/WyFQXS30NVaw7cLDdRxX.png', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/kTTNFs6FMjB8kZQf4Z9C.jpg', '1', '2023-08-18 14:55:59'),
-(4, '234234', 'sdfdsfsdf', 'sdsdf', 'sdfsdf', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/ofyYGyLd0FfVvmxowq0B.jpg', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/rhFr7VcHuYUbEIGLlyQt.png', '1', '2023-08-18 14:56:59');
+INSERT INTO `jobpublish` (`id`, `soc_code`, `job_title`, `department`, `job_description`, `publish_website_url_1`, `file_1`, `publish_website_url_2`, `file_2`, `entry_by`, `status`, `created_at`) VALUES
+(1, '249', 'Software Engineer', 'IT', 'Vacancy\r\n2\r\n\r\nJob Context\r\nWe are looking for talented and experienced (2+ years) software developers, who will be able to work on any kind of PHP framework and ReactJS.\r\nJob Responsibilities\r\nDevelop, Test, Deploy maintain and improve web applications\r\nAdvanced programming Skill in PHP or Python\r\nExperience at least one php framework Cakephp, Laravel, Zend etc. or Django\r\nExperience in git command and it usages.\r\nExperience with cloud-based infrastructure and platform services\r\nExperience with ReactJS, jQuery or Angular etc.\r\nExperience with MySQL, MongoDB, PostgreSQL.\r\nAbility to express ideas clearly within the team\r\nKnowledge in open source product like Wordpress/ Magento/ osCommerce etc.\r\nGood Knowledge in XHTML, CSS, HTML5 etc.\r\nShould have experience in integrating 3rd party APIs like Google map, payment gateways, service APIs etc\r\nShould have knowledge working in Linux Environment\r\nManage individual project priorities, deadlines and deliverables.\r\nEmployment Status\r\nFull-time\r\n\r\nWorkplace\r\nWork at office\r\nEducational Requirements\r\nBachelor/ Master Degree from any recognized Institute.\r\nSkills Required: Git, PHP (OOP), REST API development experience, Software Developer\r\nExperience Requirements\r\nAt least 2 year(s)\r\nThe applicants should have experience in the following area(s):\r\nAPI Development, CakePHP, jQuery/PrototypeJs, Laravel, Programmer/ Software Engineer, ReactJS, Software Architect, Software Development, Software Implementation, Team Leader (Software)\r\nAdditional Requirements\r\nAge 22 to 35 years\r\nBoth males and females are allowed to apply\r\nKnowledge in Docker is plus.\r\nGood understanding of requirements analysis and database design.\r\nTeam player with excellent English Communication skills\r\nMust be able to handle multiple projects and deadline\r\nTechnical blog or open source contribution will be considered as added advantage.\r\nJob Location\r\nDhaka\r\n\r\nSalary\r\nNegotiable\r\nSalary based on the experience and expertise.\r\nCompensation & Other Benefits\r\nMedical allowance, Performance bonus, Weekly 2 holidays, Insurance\r\nLunch Facilities: Full Subsidize\r\nSalary Review: Yearly\r\nFestival Bonus: 2\r\nExcellent environment to learn\r\nOther benefits as per company policy\r\nJob Source\r\nBdjobs.com Online Job Posting.', 'http://localhost:3000/recruitment/new-job-publish', '/backend/files/mzsNSlHj0YWhRyQyhnnU.pdf', 'http://localhost:3000/recruitment/new-job-publish', '', '1', 1, '2023-08-18 14:56:59'),
+(2, '248', 'Senior BI Engineer', 'Information Technology', 'Job Context\r\nBJIT Limited is looking for a creative and passionate Business Intelligence Engineer.\r\nJob Responsibilities\r\nRecognize business requirements in the context of BI and create data models to transform raw data into relevant insights.\r\nUsing Power BI, create dashboards and interactive visual reports.\r\nDefine key performance indicators (KPIs) with specific objectives and track them regularly.\r\nAnalyze data and display it in reports to aid decision-making.\r\nConvert business needs into technical specifications and establish a timetable for job completion.\r\nCreate, test, and deploy Power BI scripts, as well as execute efficient deep analysis.\r\nUse Power BI to run DAX queries and functions.\r\nCreate charts and data documentation with explanations of algorithms, parameters, models, and relationships.\r\nConstruct a data warehouse.\r\nUse SQL queries to get the best results.\r\nMake technological adjustments to current BI systems to improve their performance.\r\nFor a better understanding of the data, use filters and visualizations.\r\nAnalyze current ETL procedures to define and create new systems.\r\nEmployment Status\r\nFull-time\r\n\r\nWorkplace\r\nWork at office\r\nEducational Requirements\r\nGraduated in CSE or relevant subject.\r\nExperience Requirements\r\nAt least 4 year(s)\r\nAdditional Requirements\r\nAge at least 25 years\r\nBackground with BI tools and systems such as Power BI, Tableau, SAP, Odoo.\r\nPrior experience in data-related tasks.\r\nUnderstanding of the Microsoft BI Stack.\r\nMastery in data analytics.\r\nShould be proficient in software development.\r\nBe familiar with MS SQL Server BI Stack tools and technologies, such as SSRS and TSQL, Power Query, MDX, Power BI, and DAX.\r\nAnalytical thinking for converting data into relevant reports and graphics.\r\nCapable of enabling row-level data security.\r\nKnowledge of Power BI application security layer models.\r\nAbility to run DAX queries on Power BI desktop.\r\nProficient in doing advanced-level computations on the data set.\r\nExcellent communication skills are required to communicate needs with client and internal teams successfully Workplace.\r\nNice to have working knowledge on large data set.\r\nJob Location\r\nDhaka\r\n\r\nSalary\r\nNegotiable\r\nCompensation & Other Benefits\r\nProvident Fund\r\nGratuity\r\nWeekly two holidays.\r\nLeave encashment\r\nMedical benefit (Employee Only)\r\nLunch Facilities: Partially subsidized.\r\nSalary Review: Yearly.\r\nFestival Bonus: 3 (Yearly).\r\nFacilities for skill development.\r\nSponsorship for professional certification.\r\nWPPF (Profit Sharing).\r\nTeam retreat.\r\nJob Source\r\nBdjobs.com Online Job Posting.', 'http://localhost:3000/recruitment/new-job-publishsend', '/backend/files/aLRcWk7RPTf72Net6pFs.pdf', 'http://localhost:3000/recruitment/new-job-publishsend', '/backend/files/RNPl2GOMYcs07VeZg40v.pdf', '1', 1, '2023-08-29 01:26:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_status`
+--
+
+CREATE TABLE `job_status` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_status`
+--
+
+INSERT INTO `job_status` (`id`, `name`, `status`) VALUES
+(1, 'Application Received', 1),
+(2, 'Short listed', 1),
+(3, 'Interview', 1),
+(4, 'Online Screen Test', 1),
+(5, 'Written Test', 1),
+(6, 'Telephone Interview', 1),
+(7, 'Job Offered', 1),
+(8, 'Hired', 1),
+(9, 'Hold', 1),
+(10, 'Rejected', 1);
 
 -- --------------------------------------------------------
 
@@ -2401,6 +2489,12 @@ ALTER TABLE `annual_pay`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `apply_job`
+--
+ALTER TABLE `apply_job`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
@@ -2481,6 +2575,12 @@ ALTER TABLE `failed_jobs`
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
+-- Indexes for table `generate_offer_letter`
+--
+ALTER TABLE `generate_offer_letter`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `joblist`
 --
 ALTER TABLE `joblist`
@@ -2496,6 +2596,12 @@ ALTER TABLE `jobpost`
 -- Indexes for table `jobpublish`
 --
 ALTER TABLE `jobpublish`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `job_status`
+--
+ALTER TABLE `job_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2650,6 +2756,12 @@ ALTER TABLE `annual_pay`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
+-- AUTO_INCREMENT for table `apply_job`
+--
+ALTER TABLE `apply_job`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
@@ -2728,6 +2840,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `generate_offer_letter`
+--
+ALTER TABLE `generate_offer_letter`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `joblist`
 --
 ALTER TABLE `joblist`
@@ -2743,7 +2861,13 @@ ALTER TABLE `jobpost`
 -- AUTO_INCREMENT for table `jobpublish`
 --
 ALTER TABLE `jobpublish`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `job_status`
+--
+ALTER TABLE `job_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `lead`

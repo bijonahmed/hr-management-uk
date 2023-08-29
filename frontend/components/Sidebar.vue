@@ -83,26 +83,27 @@
                     <Nuxt-link to="/recruitment/job-publish-list"><i class="bx bx-right-arrow-alt"></i>Job Published</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Job Applied</Nuxt-link>
+                    <Nuxt-link to="/recruitment/job-applied-list"><i class="bx bx-right-arrow-alt"></i>Job Applied</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Short Listing</Nuxt-link>
+                    <Nuxt-link to="/recruitment/job-short-list"><i class="bx bx-right-arrow-alt"></i>Short Listing</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Invterview</Nuxt-link>
+                    <Nuxt-link to="/recruitment/job-interview-list"><i class="bx bx-right-arrow-alt"></i>Invterview</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Hired</Nuxt-link>
+                    <Nuxt-link to="/recruitment/job-hired-list"><i class="bx bx-right-arrow-alt"></i>Hired</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Generate Offer Letter</Nuxt-link>
+                    <Nuxt-link to="/recruitment/reject-list"><i class="bx bx-right-arrow-alt"></i>Rejected</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Search</Nuxt-link>
+                    <Nuxt-link to="/recruitment/generate-offer-letter-list"><i class="bx bx-right-arrow-alt"></i>Generate Offer Letter</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Status Search</Nuxt-link>
+                    <Nuxt-link to="/recruitment/report"><i class="bx bx-right-arrow-alt"></i>Report</Nuxt-link>
                 </li>
+              
                 <li>
                     <Nuxt-link to="/recruitment/message-center-list"><i class="bx bx-right-arrow-alt"></i>Message Center</Nuxt-link>
                 </li>
@@ -209,7 +210,6 @@
             </ul>
         </li>
 
-        
     </ul>
     <!--end navigation-->
 </div>
@@ -233,10 +233,11 @@
     border: 1px solid #ffffff00;
     transition: all .3s ease-out;
 }
+
 .sidebar-wrapper .metismenu ul a {
-	padding: 0px 0px 0px 0px; 
-	font-size: 15px;
-	border: 0;
+    padding: 0px 0px 0px 0px;
+    font-size: 15px;
+    border: 0;
 }
 </style>
 

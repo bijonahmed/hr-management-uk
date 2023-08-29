@@ -68,7 +68,7 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Upload Document</label>
-                                            <input type="file" ref="file_2"  class="form-control file_2" id="job_location" @change="onFileSelected_two">
+                                            <input type="file" ref="file_2"  class="form-control file_2" id="file_2" @change="onFileSelected_two">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -109,12 +109,14 @@ export default {
                 job_title: '',
                 job_code:'',
                 department: '',
+                status: 1,
                 job_description: '',
                 publish_website_url_1: '',
-                file_1: '',
                 publish_website_url_2: '',
-                file_2: '',
+                
             },
+            file_1: '',
+            file_2: '',
             notifmsg: '',
             errors: {},
         }
@@ -143,6 +145,7 @@ export default {
             formData.append('job_description', this.insertdata.job_description);
             formData.append('publish_website_url_1', this.insertdata.publish_website_url_1);
             formData.append('publish_website_url_2', this.insertdata.publish_website_url_2);
+            formData.append('status', this.insertdata.status);
             const headers = {
                 'Content-Type': 'multipart/form-data'
             };

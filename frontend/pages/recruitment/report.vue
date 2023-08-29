@@ -11,29 +11,35 @@
                             <li class="breadcrumb-item">
                                 <router-link to="/"><a href="javascript:;"><i class="bx bx-home-alt"></i></a></router-link>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Job Publish List</li>
+                            <li class="breadcrumb-item active" aria-current="page">Report</li>
                         </ol>
                     </nav>
                 </div>
-                <div class="ms-auto">
-                    <div class="btn-group">
-                        <Nuxt-link to="/recruitment/new-job-publish"><button type="button" class="btn btn-primary"><i class="bx bx-plus"></i>New</button></Nuxt-link>
-                    </div>
-                </div>
+
             </div>
             <!--end breadcrumb-->
             <!-- <span class="loader"></span> -->
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-5">
+                        <div class="col-md-3">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control job_title" placeholder="Job Title" v-model="searchQuery.job_title" @input="handleSearch">
+                                <select name="status" v-model="insertdata.status" class="form-select status">
+                                    <option value="">Select Status</option>
+                                    <option v-for='data in jobstatus' :value='data.id'>{{ data.name }}</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-md-5">
+
+                        <div class="col-md-3">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control soc_code" placeholder="SOC Code" v-model="searchQuery.soc_code" @input="handleSearch">
+                                <input type="date" class="form-control frmdate" placeholder="From">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="input-group mb-3">
+                                <input type="date" class="form-control todate" placeholder="To">
                             </div>
                         </div>
 
@@ -54,86 +60,59 @@
                         <table class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th>SOC Code</th>
                                     <th>Job Title</th>
-                                    <th>Department</th>
-                                    <th>Status</th>
-                                    <th class="text-left">Action</th>
-                                    <th class="text-left">Apply URL</th>
+                                    <th>Candi. Name</th>
+                                    <th>Candi. Phone</th>
+                                    <th>Candi. Address</th>
+                                    <th>Candi. Email</th>
+                                    <th>Exp. Salary</th>
+                                    <th>Status</th>  
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="item in paginatedData" :key="item.id">
-                                    <td>{{ item.soc_code }}</td>
                                     <td>{{ item.job_title }}</td>
-                                    <td>{{ item.department }}</td>
-                                    <td class="text-left">
-                                        <span v-if="(item.status == 1)"> Publish </span>
-                                        <span v-else> Draft </span>
-                                    </td>
-                                    <td>
-
-                                        <center>
-                                            <nuxt-link :to="{name: 'recruitment-edit-jpublish-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-edit"></i>EDIT
-                                            </nuxt-link>
-                                        </center>
-                                    </td>
-
-                                    <td>
-                                        <span v-if="(item.status == 1)"> 
-                                                <center>
-                                                    <nuxt-link :to="{name: 'recruitment-apply-job-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-link"></i>Apply URL
-                                                    </nuxt-link>
-                                                </center>
-                                         </span>
-
-                                    </td>
-
+                                    <td>{{ item.candidate_name }}</td>
+                                    <td>{{ item.candidate_num }}</td>
+                                    <td>{{ item.candidate_address }}</td>
+                                    <td>{{ item.candidate_email }}</td>
+                                    <td>{{ item.expeted_salary }}</td>
+                                    <td>{{ item.job_status }}</td>
+                                   
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <div class="pagenation">
-                        <div style="text-align: right;">
-                            <button @click="previousPage" :disabled="currentPage === 1" class="btn btn-primary btn-sm">
-                                <center><i class="lni lni-angle-double-left"></i></center>
-                            </button>
-                            <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                            <button @click="nextPage" :disabled="currentPage === totalPages" class="btn btn-primary btn-sm">
-                                <center><i class="lni lni-angle-double-right"></i></center>
-                            </button>
-                        </div>
-                    </div>
+                     
                 </div>
             </div>
         </div>
     </div>
-    <!-- Modal -->
     <!-- END Modal -->
     <!--end page wrapper -->
 </div>
 </template>
 
-    
 <script>
 import _ from 'lodash';
 export default {
     head: {
-        title: 'Job Posting List',
+        title: 'Employee List',
     },
     data() {
         return {
             insertdata: {
                 id: '',
                 name: '',
-                status: 1,
+                status: '',
             },
             notifmsg: '',
             errors: {},
             data: [],
+            jobstatus: [],
             searchQuery: {
-                job_title: '',
-                soc_code: '',
+                name: '',
+                status: 1
             },
             searchQueryPhone: '',
             currentPage: 1,
@@ -142,6 +121,7 @@ export default {
     },
     async mounted() {
         await this.fetchData();
+        this.job_status();
     },
     computed: {
         totalPages() {
@@ -149,14 +129,14 @@ export default {
         },
         filteredData() {
             let result = this.data;
-            if (this.searchQuery.job_title) {
+            if (this.searchQuery.name) {
                 result = result.filter(item =>
-                    item.job_title.toLowerCase().includes(this.searchQuery.job_title.toLowerCase())
+                    item.name.toLowerCase().includes(this.searchQuery.name.toLowerCase())
                 );
             }
-            if (this.searchQuery.soc_code) {
+            if (this.searchQuery.status) {
                 result = result.filter(item =>
-                    item.soc_code == this.searchQuery.soc_code
+                    item.status == this.searchQuery.status
                 );
             }
             return result;
@@ -167,10 +147,19 @@ export default {
         },
     },
     methods: {
+        job_status() {
+            this.$axios.get(`/recruitment/getjobStatus`).then(response => {
+                this.jobstatus = response.data.data;
+            });
+        },
         async fetchData() {
             $(".customerSpinner").show();
             try {
-                const response = await this.$axios.get(`/recruitment/getAllJobPublish`);
+                let frmdate = $(".frmdate").val();
+                let status = $(".status").val();
+                let todate = $(".todate").val();
+                const response = await this.$axios.get('/recruitment/getreportRecuitment?frmdate=' + frmdate + '&todate=' + todate + '&status=' + status);
+                console.log(response.data.data);
                 this.data = response.data.data;
                 $(".customerSpinner").hide();
             } catch (error) {
@@ -186,22 +175,20 @@ export default {
         nextPage() {
             this.currentPage++;
         },
-        hideModal() {
-            $('#myModal').modal('hide')
-        },
+
         success_noti() {
             Lobibox.notify('success', {
                 pauseDelayOnHover: true,
                 continueDelayOnInactiveTab: false,
                 position: 'top right',
                 icon: 'bx bx-check-circle',
-                msg: 'Your data has been successfully update.'
+                msg: 'Your data has been successfully inserted.'
             });
         },
     },
 };
 </script>
-    
+
 <style scoped>
 .pagenation {
     margin-top: 10px;

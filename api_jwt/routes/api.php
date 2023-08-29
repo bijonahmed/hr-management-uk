@@ -11,6 +11,7 @@ use App\Http\Controllers\Circumstances\CircumstancesController;
 use App\Http\Controllers\Recruitment\RecruitmentController;
 use App\Http\Controllers\Organogram\OrganogramController;
 use App\Http\Controllers\Setting\SettingController;
+use App\Http\Controllers\UnauthenticatedController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -114,6 +115,17 @@ Route::group([
 
 
 Route::group([
+    //'middleware' => 'api',
+    'prefix' => 'unauthenticate'
+], function () {
+   
+    //Job Publish
+    Route::post('applyJob', [UnauthenticatedController::class, 'applyJob']);
+    Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
+ 
+});
+
+Route::group([
     'middleware' => 'api',
     'prefix' => 'recruitment'
 ], function () {
@@ -128,9 +140,23 @@ Route::group([
     Route::post('saveJobPublish', [RecruitmentController::class, 'saveJobPublish']);
     Route::get('getAllJobPublish', [RecruitmentController::class, 'getAllJobPublish']);
     Route::get('checkPublishRow/{id}', [RecruitmentController::class, 'checkPublishRow']);
+
     //sending message
     Route::post('send-message', [RecruitmentController::class, 'sendMessage']);
     Route::get('getAllemailSending', [RecruitmentController::class, 'getAllemailSending']);
+    //applied job
+    Route::get('getallAppliedJob', [RecruitmentController::class, 'getallAppliedJob']);
+    Route::get('getallShortListedJob', [RecruitmentController::class, 'getallShortListedJob']);
+    Route::get('getallInterviewListedJob', [RecruitmentController::class, 'getallInterviewListedJob']);
+    Route::get('getallHiredList', [RecruitmentController::class, 'getallHiredList']);
+    Route::get('getRejectList', [RecruitmentController::class, 'getRejectList']);
+    Route::get('checkapplyjobrow/{id}', [RecruitmentController::class, 'checkapplyjobrow']);
+    Route::get('getjobStatus', [RecruitmentController::class, 'getjobStatus']);
+    Route::post('updateAppliedJob', [RecruitmentController::class, 'updateAppliedJob']);
+    Route::post('generatedOfferLetter', [RecruitmentController::class, 'generatedOfferLetter']);
+    Route::get('offerletterlist', [RecruitmentController::class, 'offerletterlist']);
+    Route::get('checkgeneOfferLetterRow/{id}', [RecruitmentController::class, 'checkgeneOfferLetterRow']);
+    Route::get('getreportRecuitment', [RecruitmentController::class, 'getreportRecuitment']);
 });
 
 Route::group([

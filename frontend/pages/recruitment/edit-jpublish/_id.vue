@@ -75,6 +75,23 @@
                                             <div id="show_file_2"></div>
                                         </div>
                                     </div>
+
+
+                                    <div class="row mb-3">
+                                        <label for="inputConfirmPassword2" class="col-sm-3 col-form-label">Status</label>
+                                        <div class="col-sm-9">
+                                            <select name="status" v-model="insertdata.status" class="form-select">
+                                                <option value="1">Publish</option>
+                                                <option value="0">Draft</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
                                     <div class="col-md-12">
                                         <hr>
                                     </div>
@@ -103,7 +120,7 @@
 </style>
 
 <script>
-import $ from "jquery";
+
 export default {
     head: {
         title: 'Job Publish Edit',
@@ -118,14 +135,16 @@ export default {
                 department: '',
                 job_description: '',
                 publish_website_url_1: '',
-                file_1: '',
+                status:'',
                 publish_website_url_2: '',
-                file_2: '',
+              
             },
             notifmsg: '',
             department: [],
             designation: [],
             allcountry: [],
+            file_1: '',
+            file_2: '',
             emplist: [],
             errors: {},
         }
@@ -149,6 +168,7 @@ export default {
             formData.append('soc_code', this.insertdata.soc_code);
             formData.append('job_code', this.insertdata.job_code);
             formData.append('department', this.insertdata.department);
+            formData.append('status', this.insertdata.status);
             formData.append('job_title', this.insertdata.job_title);
             formData.append('job_description', this.insertdata.job_description);
             formData.append('publish_website_url_1', this.insertdata.publish_website_url_1);
@@ -182,6 +202,7 @@ export default {
                 this.insertdata.job_description = response.data.data.job_description;
                 this.insertdata.publish_website_url_1 = response.data.data.publish_website_url_1;
                 this.insertdata.publish_website_url_2 = response.data.data.publish_website_url_2;
+                this.insertdata.status = response.data.data.status;
                 $('#show_file_1').append(`<a target='_blank' href='${response.data.file_1}'>Show document</a>`);
                 $('#show_file_2').append(`<a target='_blank' href='${response.data.file_2}'>Show document</a>`);
                 //END
