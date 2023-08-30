@@ -55,6 +55,7 @@ Route::group([
     'prefix' => 'user'
 ], function () {
     Route::get('allUsers', [UserController::class, 'AllUsersList']);
+    Route::get('allemployeeType', [UserController::class, 'allemployeeType']);
     Route::get('employeeRow/{id}', [UserController::class, 'employeeRow']);
     Route::get('getEmployeeList', [UserController::class, 'getEmployeeList']);
     Route::post('saveEmployee', [UserController::class, 'saveEmployee']);
@@ -82,8 +83,6 @@ Route::group([
     Route::get('chkContractAggData', [CircumstancesController::class, 'chkContractAggData']);
     Route::get('selectOrganisationProfile', [UserController::class, 'selectOrganisationProfile']);
     Route::post('organisationUpdateprofile', [UserController::class, 'organisationUpdateprofile']);
-
-
 });
 Route::group([
     'middleware' => 'api',
@@ -112,20 +111,14 @@ Route::group([
     Route::get('getAllDocuments', [DocumentsController::class, 'getAllDocuments']);
     Route::get('documents-row/{id}', [DocumentsController::class, 'editId']);
 });
-
-
-
 Route::group([
     //'middleware' => 'api',
     'prefix' => 'unauthenticate'
 ], function () {
-   
     //Job Publish
     Route::post('applyJob', [UnauthenticatedController::class, 'applyJob']);
     Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
- 
 });
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'recruitment'
@@ -141,7 +134,6 @@ Route::group([
     Route::post('saveJobPublish', [RecruitmentController::class, 'saveJobPublish']);
     Route::get('getAllJobPublish', [RecruitmentController::class, 'getAllJobPublish']);
     Route::get('checkPublishRow/{id}', [RecruitmentController::class, 'checkPublishRow']);
-
     //sending message
     Route::post('send-message', [RecruitmentController::class, 'sendMessage']);
     Route::get('getAllemailSending', [RecruitmentController::class, 'getAllemailSending']);
@@ -159,7 +151,6 @@ Route::group([
     Route::get('checkgeneOfferLetterRow/{id}', [RecruitmentController::class, 'checkgeneOfferLetterRow']);
     Route::get('getreportRecuitment', [RecruitmentController::class, 'getreportRecuitment']);
 });
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'organogram'
@@ -171,9 +162,7 @@ Route::group([
     Route::get('getOrganisationHierarchyList', [OrganogramController::class, 'getOrganisationHierarchyList']);
     Route::get('levelCheck/{id}', [OrganogramController::class, 'editId']);
     Route::get('hierarchy-row/{id}', [OrganogramController::class, 'hierarchyRow']);
-
 });
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'setting'
@@ -215,8 +204,6 @@ Route::group([
     Route::get('getPayItemList', [SettingController::class, 'getPayItemList']);
     Route::get('checkPayItemRow/{id}', [SettingController::class, 'checkPayItemRow']);
 });
-
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'holiday'
@@ -227,5 +214,15 @@ Route::group([
     Route::post('createEditHolidayList', [LeaveController::class, 'createEditHolidayList']);
     Route::get('getHolidayAllList', [LeaveController::class, 'getHolidayAllList']);
     Route::get('chkleadlistId/{id}', [LeaveController::class, 'chkleadlistId']);
-
+});
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'leave'
+], function () {
+    Route::post('createEditLeavType', [LeaveController::class, 'createEditLeavType']);
+    Route::get('getLeaveTypeList', [LeaveController::class, 'getLeaveTypeList']);
+    Route::get('leaveTyperow/{id}', [LeaveController::class, 'leaveTyperow']);
+    Route::post('createEditLeaveRule', [LeaveController::class, 'createEditLeaveRule']);
+    Route::get('getLeaveRuleList', [LeaveController::class, 'getLeaveRuleList']);
+    Route::get('leaveRulerow/{id}', [LeaveController::class, 'leaveRulerow']);
 });

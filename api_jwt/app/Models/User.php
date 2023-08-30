@@ -92,6 +92,13 @@ class User extends Authenticatable implements JWTSubject
     return $row;
   }
 
+   public static function allEmpType()
+  {
+    $row = DB::table('employee_type')->where('status', 1)->get();
+    return $row;
+  }
+
+
   public static function orgProfiletwo()
   {
     $row = DB::table('orgainsation_profile_2')->where('id', 1)->first();
@@ -151,6 +158,8 @@ class User extends Authenticatable implements JWTSubject
     $results = DB::select($sqld);
     return $results;
   }
+
+
   public static function allUseers($data = array())
   {
     $cond = '';

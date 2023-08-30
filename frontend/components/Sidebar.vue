@@ -140,6 +140,32 @@
                 </li>
             </ul>
         </li>
+
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_30" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Leave Management</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_30" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/leave/leave-type-list"><i class="bx bx-right-arrow-alt"></i>Manage Leave Type</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/leave/leave-role-list"><i class="bx bx-right-arrow-alt"></i>Leave Rule</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/leave/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Allocation</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/leave/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Balance</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/holiday/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Report</Nuxt-link>
+                </li>
+            </ul>
+        </li>
         <li>
             <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_7" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bx bx-category"></i>

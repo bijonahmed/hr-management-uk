@@ -7,6 +7,8 @@ use Validator;
 use Helper;
 use App\Models\Holiday;
 use App\Models\User;
+use App\Models\LeaveType;
+use App\Models\LeaveRule;
 use App\Models\HolidayList;
 use App\Models\Profile;
 use Illuminate\Support\Str;
@@ -22,6 +24,71 @@ class LeaveController extends Controller
         $id = auth('api')->user();
         $user = User::find($id->id);
         $this->userid = $user->id;
+    }
+    public function createEditLeaveRule(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'employee_type_id'      => 'required',
+            'leave_type_id'         => 'required',
+            'maximum_no_annual'     => 'required',
+            'effective_from'        => 'required',
+            'effective_to'          => 'required',
+            'status'                => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if (empty($request->id)) {
+            $data = new LeaveRule;
+            $data->employee_type_id   = !empty($request->employee_type_id) ? $request->employee_type_id : "";
+            $data->leave_type_id      = !empty($request->leave_type_id) ? $request->leave_type_id : "";
+            $data->maximum_no_annual  = !empty($request->maximum_no_annual) ? $request->maximum_no_annual : "";
+            $data->effective_from     = !empty($request->effective_from) ? $request->effective_from : "";
+            $data->effective_to       = !empty($request->effective_to) ? $request->effective_to : "";
+            $data->status             = !empty($request->status) ? $request->status : "";
+            $data->save();
+        } else {
+            LeaveRule::where('id', $request->id)->update([
+                'employee_type_id'    => !empty($request->employee_type_id) ? $request->employee_type_id : "",
+                'leave_type_id'       => !empty($request->leave_type_id) ? $request->leave_type_id : "",
+                'maximum_no_annual'   => !empty($request->maximum_no_annual) ? $request->maximum_no_annual : "",
+                'effective_from'      => !empty($request->effective_from) ? $request->effective_from : "",
+                'effective_to'        => !empty($request->effective_to) ? $request->effective_to : "",
+                'status'              => !empty($request->status) ? $request->status : "",
+            ]);
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
+    }
+    public function createEditLeavType(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name'      => 'required',
+            'code'      => 'required',
+            'status'    => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if (empty($request->id)) {
+            $data = new LeaveType;
+            $data->name   = !empty($request->name) ? $request->name : "";
+            $data->code   = !empty($request->code) ? $request->code : "";
+            $data->status = !empty($request->name) ? $request->status : "";
+            $data->save();
+        } else {
+            LeaveType::where('id', $request->id)->update([
+                'name'   => !empty($request->name) ? $request->name : "",
+                'code'   => !empty($request->code) ? $request->code : "",
+                'status' => !empty($request->status) ? $request->status : "",
+            ]);
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
     }
     public function createEditHoliday(Request $request)
     {
@@ -41,15 +108,13 @@ class LeaveController extends Controller
             Holiday::where('id', $request->id)->update([
                 'name'   => !empty($request->name) ? $request->name : "",
                 'status' => !empty($request->status) ? $request->status : "",
-            ]); 
+            ]);
         }
         $response = [
             'message' => 'Successfull',
         ];
         return response()->json($response);
     }
-
-
     public function createEditHolidayList(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -82,14 +147,13 @@ class LeaveController extends Controller
                 'holiday_type_id'       => !empty($request->holiday_type_id) ? $request->holiday_type_id : "",
                 'holiday_description'   => !empty($request->holiday_description) ? $request->holiday_description : "",
                 'status'                => !empty($request->status) ? $request->status : "",
-            ]); 
+            ]);
         }
         $response = [
             'message' => 'Successfull',
         ];
         return response()->json($response);
     }
-    
     public function getholidaylist(Request $request)
     {
         try {
@@ -106,15 +170,10 @@ class LeaveController extends Controller
         }
         return response()->json($response, 200);
     }
-
-
-public function getHolidayAllList(Request $request)
+    public function getLeaveTypeList()
     {
         try {
-          
-            $rows = HolidayList::join('holiday', 'holiday.id', '=', 'leave_list.holiday_type_id')
-                   ->select('leave_list.*', 'holiday.name as holidaytype')
-                   ->get();
+            $rows =  LeaveType::all();
             $response = [
                 'data' => $rows,
                 'message' => 'success'
@@ -127,8 +186,43 @@ public function getHolidayAllList(Request $request)
         }
         return response()->json($response, 200);
     }
- 
-    
+    public function getLeaveRuleList()
+    {
+        try {
+            $rows = LeaveRule::join('employee_type', 'employee_type.id', '=', 'leave_rule.employee_type_id')
+                ->leftjoin('leave_type', 'leave_type.id', '=', 'leave_rule.leave_type_id')
+                ->select('leave_rule.*', 'employee_type.name as emp_type', 'leave_type.name as lev_type')
+                ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
+    public function getHolidayAllList(Request $request)
+    {
+        try {
+            $rows = HolidayList::join('holiday', 'holiday.id', '=', 'leave_list.holiday_type_id')
+                ->select('leave_list.*', 'holiday.name as holidaytype')
+                ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
     public function chkholiDayRow($id)
     {
         $id = (int) $id;
@@ -139,8 +233,26 @@ public function getHolidayAllList(Request $request)
         ];
         return response()->json($response, 200);
     }
-
-
+    public function leaveTyperow($id)
+    {
+        $id = (int) $id;
+        $data = LeaveType::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+    public function leaveRulerow($id)
+    {
+        $id = (int) $id;
+        $data = LeaveRule::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
     public function chkleadlistId($id)
     {
         $id = (int) $id;

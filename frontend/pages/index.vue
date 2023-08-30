@@ -127,6 +127,24 @@
                     </Nuxt-link>
                 </div>
             </div>
+
+            <div class="col">
+                <div class="card radius-10 bg-gradient-deepblue">
+                    <Nuxt-link to="/holiday/dashboard">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center text-white">
+                                    <p class="mb-0">Holiday Management</p>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class='bx bx-envelope fs-3 text-white'></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </Nuxt-link>
+                </div>
+            </div>
         </div>
         <!--end row-->
 

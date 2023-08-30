@@ -148,6 +148,24 @@ class UserController extends Controller
         }
         return response()->json($response, 200);
     }
+
+    public function allemployeeType(Request $request)
+    {
+        try {
+            $rows = User::allEmpType($request->all());
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
+    
     public function editUserId($id)
     {
         $data = User::checkUserRow($id);
