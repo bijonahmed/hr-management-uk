@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,8 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use AuthorizesRequests;
 use DB;
-
-class project extends Authenticatable
+class Project extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     public $table = "projects";
@@ -24,24 +22,19 @@ class project extends Authenticatable
         if (!empty($data['name'])) {
             $cond .= " AND projects.name LIKE '%" . $data['name'] . "%'";
         }
-
         $cond .= " ORDER BY projects.id DESC";
-
         $sqld = "SELECT * FROM `projects` WHERE 1 " . $cond;
         //echo $sqld;exit; 
         $results = DB::select($sqld);
         return $results;
     }
-
-
-     public static function filterListTask($data = array())
+    public static function filterListTask($data = array())
     {
         //dd($data);
         $cond = '';
         if (!empty($data['name'])) {
             $cond .= " AND tasks.name LIKE '%" . $data['name'] . "%'";
         }
-
         $cond .= " ORDER BY tasks.id DESC";
         $sqld  = "SELECT tasks.*,projects.name  as projectName,employee.name as employeeName,users.name as createdBy   FROM `tasks`
                  LEFT JOIN projects ON (projects.id=tasks.project_id)
@@ -56,11 +49,8 @@ class project extends Authenticatable
     {
         return DB::table('projects')->where('id', $id)->first();
     }
-
-
-  public static function editIdtask($id)
+    public static function editIdtask($id)
     {
         return DB::table('tasks')->where('id', $id)->first();
     }
-    
 }

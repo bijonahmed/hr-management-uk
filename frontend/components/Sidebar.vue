@@ -103,7 +103,6 @@
                 <li>
                     <Nuxt-link to="/recruitment/report"><i class="bx bx-right-arrow-alt"></i>Report</Nuxt-link>
                 </li>
-              
                 <li>
                     <Nuxt-link to="/recruitment/message-center-list"><i class="bx bx-right-arrow-alt"></i>Message Center</Nuxt-link>
                 </li>
@@ -124,6 +123,20 @@
                 </li>
                 <li>
                     <Nuxt-link to="/employee/emp-assign-to-user"><i class="bx bx-right-arrow-alt"></i>Emp. Assign to User</Nuxt-link>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_30" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Holiday Management</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_30" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/holiday/holiday-type-list"><i class="bx bx-right-arrow-alt"></i>Holiday Type</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/holiday/holiday-list"><i class="bx bx-right-arrow-alt"></i>Holiday List</Nuxt-link>
                 </li>
             </ul>
         </li>

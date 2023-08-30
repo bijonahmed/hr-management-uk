@@ -8,14 +8,14 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center text-white">
-                                <p class="mb-0">Employee</p>
+                                    <p class="mb-0">Employee</p>
 
-                            </div>
+                                </div>
                                 <div class="ms-auto">
                                     <i class='bx bx-cart fs-3 text-white'></i>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </Nuxt-link>
                 </div>
@@ -26,15 +26,14 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center text-white">
-                                <p class="mb-0">Users</p>
+                                    <p class="mb-0">Users</p>
 
-                            </div>
+                                </div>
                                 <div class="ms-auto">
                                     <i class='bx bx-group fs-3 text-white'></i>
                                 </div>
                             </div>
 
-                            
                         </div>
                     </Nuxt-link>
                 </div>
@@ -45,51 +44,32 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center text-white">
-                                <p class="mb-0">Task</p>
+                                    <p class="mb-0">Task</p>
 
-                            </div>
+                                </div>
                                 <div class="ms-auto">
                                     <i class='bx bx-group fs-3 text-white'></i>
                                 </div>
                             </div>
 
-                            
                         </div>
                     </Nuxt-link>
                 </div>
             </div>
-            <div class="col">
-                <div class="card radius-10 bg-gradient-ibiza">
-                    <Nuxt-link to="/recruitment/job-list">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="d-flex align-items-center text-white">
-                                <p class="mb-0">Recruitment</p>
-                            </div>
-                                <div class="ms-auto">
-                                    <i class='bx bx-envelope fs-3 text-white'></i>
-                                </div>
-                            </div>
-
-                           
-                        </div>
-                    </Nuxt-link>
-                </div>
-            </div>
+        
             <div class="col">
                 <div class="card radius-10 bg-gradient-ibiza">
                     <Nuxt-link to="/organogram/organisation-hierarchy-list">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div class="d-flex align-items-center text-white">
-                                <p class="mb-0">Organogram Chart</p>
-                            </div>
+                                    <p class="mb-0">Organogram Chart</p>
+                                </div>
                                 <div class="ms-auto">
                                     <i class='bx bx-envelope fs-3 text-white'></i>
                                 </div>
                             </div>
 
-                            
                         </div>
                     </Nuxt-link>
                 </div>
@@ -97,38 +77,54 @@
             <div class="col">
                 <div class="card radius-10 bg-gradient-deepblue">
                     <Nuxt-link to="/organisation/profile">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="d-flex align-items-center text-white">
-                            <p class="mb-0">Organisation Profile</p>
-                        </div>
-                            <div class="ms-auto">
-                                <i class='bx bx-envelope fs-3 text-white'></i>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center text-white">
+                                    <p class="mb-0">Organisation Profile</p>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class='bx bx-envelope fs-3 text-white'></i>
+                                </div>
                             </div>
-                        </div>
 
-                      
-                    </div>
-                </Nuxt-link>
+                        </div>
+                    </Nuxt-link>
                 </div>
             </div>
 
             <div class="col">
                 <div class="card radius-10 bg-gradient-deepblue">
                     <Nuxt-link to="/setting/dashboard">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center">
-                            <div class="d-flex align-items-center text-white">
-                            <p class="mb-0">Setting</p>
-                        </div>
-                            <div class="ms-auto">
-                                <i class='bx bx-envelope fs-3 text-white'></i>
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center text-white">
+                                    <p class="mb-0">Setting</p>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class='bx bx-envelope fs-3 text-white'></i>
+                                </div>
                             </div>
-                        </div>
 
-                      
-                    </div>
-                </Nuxt-link>
+                        </div>
+                    </Nuxt-link>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card radius-10 bg-gradient-deepblue">
+                    <Nuxt-link to="/recruitment/dashboard">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center text-white">
+                                    <p class="mb-0">Recruitment</p>
+                                </div>
+                                <div class="ms-auto">
+                                    <i class='bx bx-envelope fs-3 text-white'></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </Nuxt-link>
                 </div>
             </div>
         </div>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Recruitment\RecruitmentController;
 use App\Http\Controllers\Organogram\OrganogramController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
+use App\Http\Controllers\Leave\LeaveController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -213,4 +214,18 @@ Route::group([
     Route::post('insertPayItem', [SettingController::class, 'insertPayItem']);
     Route::get('getPayItemList', [SettingController::class, 'getPayItemList']);
     Route::get('checkPayItemRow/{id}', [SettingController::class, 'checkPayItemRow']);
+});
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'holiday'
+], function () {
+    Route::get('getholidaylist', [LeaveController::class, 'getholidaylist']);
+    Route::get('chkholidayrow/{id}', [LeaveController::class, 'chkholiDayRow']);
+    Route::post('createEditHoliday', [LeaveController::class, 'createEditHoliday']);
+    Route::post('createEditHolidayList', [LeaveController::class, 'createEditHolidayList']);
+    Route::get('getHolidayAllList', [LeaveController::class, 'getHolidayAllList']);
+    Route::get('chkleadlistId/{id}', [LeaveController::class, 'chkleadlistId']);
+
 });

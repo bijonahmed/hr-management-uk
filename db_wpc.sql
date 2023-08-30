@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2023 at 04:06 PM
+-- Generation Time: Aug 30, 2023 at 08:56 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -900,6 +900,32 @@ INSERT INTO `generate_offer_letter` (`id`, `candidate_name`, `payment_type`, `of
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `holiday`
+--
+
+CREATE TABLE `holiday` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT 1,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `holiday`
+--
+
+INSERT INTO `holiday` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'New Year\'s Day', 1, NULL, NULL),
+(2, 'Good Friday', 1, NULL, NULL),
+(3, 'Early May Bank Holiday', 1, NULL, NULL),
+(4, 'Spring Bank Holiday', 1, NULL, NULL),
+(5, 'Christmas Day', 1, NULL, NULL),
+(6, 'Boxing Day', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `joblist`
 --
 
@@ -1082,6 +1108,36 @@ CREATE TABLE `leave_applications` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `leave_list`
+--
+
+CREATE TABLE `leave_list` (
+  `id` int(11) NOT NULL,
+  `day` varchar(255) DEFAULT NULL,
+  `frm_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `no_of_days` varchar(255) DEFAULT NULL,
+  `holiday_description` varchar(255) DEFAULT NULL,
+  `holiday_type_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leave_list`
+--
+
+INSERT INTO `leave_list` (`id`, `day`, `frm_date`, `to_date`, `no_of_days`, `holiday_description`, `holiday_type_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Friday', '2023-08-03', '2023-08-31', '434', 'Description-1', 3, 1, '2023-08-30 05:57:54', '2023-08-30 06:54:51'),
+(2, 'thrusday', '2023-08-30', '2023-09-27', '3', 'Description-2', 3, 1, '2023-08-30 05:59:11', '2023-08-30 05:59:11'),
+(3, 'tuesday', '2023-08-24', '2023-08-31', '33', 'Description-3', 5, 1, '2023-08-30 06:07:15', '2023-08-30 06:07:15'),
+(4, 'sunday', '2023-08-24', '2023-08-31', '333', 'Description-4', 4, 1, '2023-08-30 06:08:00', '2023-08-30 06:08:00'),
+(5, 'monday', '2023-08-01', '2023-08-17', '16', 'Description-5', 3, 1, '2023-08-30 06:20:10', '2023-08-30 06:20:10');
 
 -- --------------------------------------------------------
 
@@ -1463,7 +1519,7 @@ CREATE TABLE `rule` (
 --
 
 INSERT INTO `rule` (`id`, `name`, `status`) VALUES
-(1, 'Admin', 1),
+(1, 'New Year\'s Day1', 1),
 (2, 'Cashier', 1),
 (3, 'Manager', 1);
 
@@ -2581,6 +2637,12 @@ ALTER TABLE `generate_offer_letter`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `holiday`
+--
+ALTER TABLE `holiday`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `joblist`
 --
 ALTER TABLE `joblist`
@@ -2614,6 +2676,12 @@ ALTER TABLE `lead`
 -- Indexes for table `leave_applications`
 --
 ALTER TABLE `leave_applications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leave_list`
+--
+ALTER TABLE `leave_list`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2846,6 +2914,12 @@ ALTER TABLE `generate_offer_letter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `holiday`
+--
+ALTER TABLE `holiday`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `joblist`
 --
 ALTER TABLE `joblist`
@@ -2880,6 +2954,12 @@ ALTER TABLE `lead`
 --
 ALTER TABLE `leave_applications`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `leave_list`
+--
+ALTER TABLE `leave_list`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
