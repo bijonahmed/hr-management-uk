@@ -25,13 +25,47 @@ class LeaveController extends Controller
         $user = User::find($id->id);
         $this->userid = $user->id;
     }
-
-    public function getLeaveBalanceReport(){
-
-
-        
+    public function getLeaveBalanceReport()
+    {
+       
+        try {
+            $rows  = LeaveAllocation::select('leave_allocation.*', 'circumstances.name as emp_name','employee.employee_code')
+                    ->leftjoin('circumstances', 'circumstances.employe_id', '=', 'leave_allocation.employe_id')
+                    ->leftjoin('employee', 'employee.id', '=', 'circumstances.employe_id')
+                    ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
     }
 
+    public function getLeaveReport(Request $request){
+
+        //$rows =  LeaveAllocation::getLeaveReport($request->all());
+        //dd($rows);
+        try {
+            $rows =  LeaveAllocation::getLeaveReport($request->all());
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+
+
+    }
 
 
 
@@ -322,8 +356,7 @@ class LeaveController extends Controller
         ];
         return response()->json($response, 200);
     }
-
-     public function leaveAllocationRow($id)
+    public function leaveAllocationRow($id)
     {
         $id = (int) $id;
         $data = LeaveAllocation::find($id);
@@ -341,12 +374,11 @@ class LeaveController extends Controller
         $emp_type       = DB::table('employee_type')->where('name', 'like', '%' . $emp_type . '%')->first();
         $empty_type_id  = $emp_type->id;
         $data           = LeaveRule::where('employee_type_id', $empty_type_id)
-                        ->select('leave_rule.maximum_no_annual', 'leave_type.name as leave_type')
-                        ->leftjoin('leave_type', 'leave_type.id', '=', 'leave_rule.leave_type_id')
-                        ->first();
-
+            ->select('leave_rule.maximum_no_annual', 'leave_type.name as leave_type')
+            ->leftjoin('leave_type', 'leave_type.id', '=', 'leave_rule.leave_type_id')
+            ->first();
         $leavAllocation    = LeaveAllocation::where('employe_id', $emp_id)->select('leave_in_hand')->sum('leave_in_hand');
-        $maximum_no_annual = !empty($data->maximum_no_annual) ? $data->maximum_no_annual : 0;  
+        $maximum_no_annual = !empty($data->maximum_no_annual) ? $data->maximum_no_annual : 0;
         $minus_inhand      = $maximum_no_annual - (int)$leavAllocation;
         $caldata['maximum_no_annual']  = $maximum_no_annual;
         $caldata['leave_type']         = !empty($data->leave_type) ? $data->leave_type : "";

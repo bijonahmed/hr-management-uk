@@ -162,7 +162,7 @@
                     <Nuxt-link to="/leave/leave-balance-list"><i class="bx bx-right-arrow-alt"></i>Leave Balance</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="/holiday/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Report</Nuxt-link>
+                    <Nuxt-link to="/leave/leave-report"><i class="bx bx-right-arrow-alt"></i>Leave Report</Nuxt-link>
                 </li>
             </ul>
         </li>

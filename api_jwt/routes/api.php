@@ -230,6 +230,7 @@ Route::group([
     Route::get('getLeaveRulesCheck', [LeaveController::class, 'getLeaveRulesCheck']);
     Route::get('getLeaveAllocatedList', [LeaveController::class, 'getLeaveAllocationList']);
     Route::get('getLeaveBalanceReport', [LeaveController::class, 'getLeaveBalanceReport']);
+    Route::get('getLeaveReport', [LeaveController::class, 'getLeaveReport']);
 
 
 });
