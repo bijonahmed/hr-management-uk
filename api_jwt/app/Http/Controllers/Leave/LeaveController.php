@@ -10,7 +10,7 @@ use App\Models\User;
 use App\Models\LeaveType;
 use App\Models\LeaveRule;
 use App\Models\HolidayList;
-use App\Models\Profile;
+use App\Models\LeaveAllocation;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -24,6 +24,57 @@ class LeaveController extends Controller
         $id = auth('api')->user();
         $user = User::find($id->id);
         $this->userid = $user->id;
+    }
+
+    public function getLeaveBalanceReport(){
+
+
+        
+    }
+
+
+
+
+
+    public function createEditLeaveAllocation(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'employee_type'      => 'required',
+            'employe_id'         => 'required',
+            'year'               => 'required',
+            'effective_year'     => 'required',
+            'status'             => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if (empty($request->id)) {
+            $data = new LeaveAllocation;
+            $data->maximum_no_annual = !empty($request->maximum_no_annual) ? $request->maximum_no_annual : "";
+            $data->leave_type        = !empty($request->leave_type) ? $request->leave_type : "";
+            $data->employee_type     = !empty($request->employee_type) ? $request->employee_type : "";
+            $data->employe_id        = !empty($request->employe_id) ? $request->employe_id : "";
+            $data->year              = !empty($request->year) ? $request->year : "";
+            $data->leave_in_hand     = !empty($request->leave_in_hand) ? $request->leave_in_hand : "";
+            $data->effective_year    = !empty($request->effective_year) ? $request->effective_year : "";
+            $data->status            = !empty($request->status) ? $request->status : "";
+            $data->save();
+        } else {
+            LeaveAllocation::where('id', $request->id)->update([
+                'maximum_no_annual' => !empty($request->maximum_no_annual) ? $request->maximum_no_annual : "",
+                'employee_type'    => !empty($request->leave_type) ? $request->leave_type : "",
+                'employee_type'    => !empty($request->employee_type) ? $request->employee_type : "",
+                'employe_id'       => !empty($request->employe_id) ? $request->employe_id : "",
+                'year'             => !empty($request->year) ? $request->year : "",
+                'leave_in_hand'    => !empty($request->leave_in_hand) ? $request->leave_in_hand : "",
+                'effective_year'   => !empty($request->effective_year) ? $request->effective_year : "",
+                'status'           => !empty($request->status) ? $request->status : "",
+            ]);
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
     }
     public function createEditLeaveRule(Request $request)
     {
@@ -205,6 +256,24 @@ class LeaveController extends Controller
         }
         return response()->json($response, 200);
     }
+    public function getLeaveAllocationList()
+    {
+        try {
+            $rows = LeaveAllocation::join('circumstances', 'circumstances.employe_id', '=', 'leave_allocation.employe_id')
+                ->select('leave_allocation.*', 'circumstances.name as emp_name')
+                ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
     public function getHolidayAllList(Request $request)
     {
         try {
@@ -249,6 +318,41 @@ class LeaveController extends Controller
         $data = LeaveRule::find($id);
         $response = [
             'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+
+     public function leaveAllocationRow($id)
+    {
+        $id = (int) $id;
+        $data = LeaveAllocation::find($id);
+        $response = [
+            'data' => $data,
+            'message' => 'success'
+        ];
+        return response()->json($response, 200);
+    }
+    public function getLeaveRulesCheck(Request $request)
+    {
+        //dd($request->all());
+        $emp_type       = $request->employee_type;
+        $emp_id         = (int)$request->emp_id;
+        $emp_type       = DB::table('employee_type')->where('name', 'like', '%' . $emp_type . '%')->first();
+        $empty_type_id  = $emp_type->id;
+        $data           = LeaveRule::where('employee_type_id', $empty_type_id)
+                        ->select('leave_rule.maximum_no_annual', 'leave_type.name as leave_type')
+                        ->leftjoin('leave_type', 'leave_type.id', '=', 'leave_rule.leave_type_id')
+                        ->first();
+
+        $leavAllocation    = LeaveAllocation::where('employe_id', $emp_id)->select('leave_in_hand')->sum('leave_in_hand');
+        $maximum_no_annual = !empty($data->maximum_no_annual) ? $data->maximum_no_annual : 0;  
+        $minus_inhand      = $maximum_no_annual - (int)$leavAllocation;
+        $caldata['maximum_no_annual']  = $maximum_no_annual;
+        $caldata['leave_type']         = !empty($data->leave_type) ? $data->leave_type : "";
+        $caldata['leave_in_hand']      = $minus_inhand;
+        $response = [
+            'data' => $caldata,
             'message' => 'success'
         ];
         return response()->json($response, 200);

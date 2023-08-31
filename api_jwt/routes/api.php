@@ -219,10 +219,17 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'leave'
 ], function () {
+    Route::post('createEditLeaveAllocation', [LeaveController::class, 'createEditLeaveAllocation']);
     Route::post('createEditLeavType', [LeaveController::class, 'createEditLeavType']);
     Route::get('getLeaveTypeList', [LeaveController::class, 'getLeaveTypeList']);
     Route::get('leaveTyperow/{id}', [LeaveController::class, 'leaveTyperow']);
     Route::post('createEditLeaveRule', [LeaveController::class, 'createEditLeaveRule']);
     Route::get('getLeaveRuleList', [LeaveController::class, 'getLeaveRuleList']);
     Route::get('leaveRulerow/{id}', [LeaveController::class, 'leaveRulerow']);
+    Route::get('leaveAllocationRow/{id}', [LeaveController::class, 'leaveAllocationRow']);
+    Route::get('getLeaveRulesCheck', [LeaveController::class, 'getLeaveRulesCheck']);
+    Route::get('getLeaveAllocatedList', [LeaveController::class, 'getLeaveAllocationList']);
+    Route::get('getLeaveBalanceReport', [LeaveController::class, 'getLeaveBalanceReport']);
+
+
 });

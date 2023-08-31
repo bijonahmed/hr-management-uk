@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 03:20 PM
+-- Generation Time: Aug 30, 2023 at 08:25 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -1085,6 +1085,35 @@ INSERT INTO `lead` (`id`, `name`, `email`, `phone`, `address`, `status`, `entry_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `leave_allocation`
+--
+
+CREATE TABLE `leave_allocation` (
+  `id` int(11) NOT NULL,
+  `employee_type` varchar(255) DEFAULT NULL,
+  `employe_id` int(11) DEFAULT NULL,
+  `year` varchar(255) DEFAULT NULL,
+  `maximum_no_annual` varchar(255) DEFAULT NULL,
+  `leave_type` varchar(255) DEFAULT NULL,
+  `leave_in_hand` varchar(255) DEFAULT NULL,
+  `effective_year` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leave_allocation`
+--
+
+INSERT INTO `leave_allocation` (`id`, `employee_type`, `employe_id`, `year`, `maximum_no_annual`, `leave_type`, `leave_in_hand`, `effective_year`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'FULL TIME', 6, '2021', '265', 'Unauthorised Absence', '65', '2021', 1, '2023-08-30 17:47:18', '2023-08-30 17:47:18'),
+(2, 'FULL TIME', 6, '2021', '265', 'Unauthorised Absence', '5', '2021', 1, '2023-08-30 17:47:18', '2023-08-30 17:47:18'),
+(3, 'FULL TIME', 6, '2026', '265', 'Unauthorised Absence', '70', '2022', 1, '2023-08-30 18:12:00', '2023-08-30 18:12:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `leave_applications`
 --
 
@@ -1162,8 +1191,8 @@ CREATE TABLE `leave_rule` (
 --
 
 INSERT INTO `leave_rule` (`id`, `employee_type_id`, `leave_type_id`, `maximum_no_annual`, `effective_from`, `effective_to`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '40000', '2023-08-09', '2023-08-31', 1, '2023-08-30 13:01:21', '2023-08-30 13:18:47'),
-(2, 2, 7, '160', '2023-08-01', '2023-08-31', 1, '2023-08-30 13:02:06', '2023-08-30 13:02:06');
+(1, 1, 1, '265', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:01:21', '2023-08-30 16:40:56'),
+(2, 2, 7, '160', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:02:06', '2023-08-30 16:40:26');
 
 -- --------------------------------------------------------
 
@@ -2731,6 +2760,12 @@ ALTER TABLE `lead`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `leave_allocation`
+--
+ALTER TABLE `leave_allocation`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `leave_applications`
 --
 ALTER TABLE `leave_applications`
@@ -3018,6 +3053,12 @@ ALTER TABLE `job_status`
 --
 ALTER TABLE `lead`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `leave_allocation`
+--
+ALTER TABLE `leave_allocation`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `leave_applications`

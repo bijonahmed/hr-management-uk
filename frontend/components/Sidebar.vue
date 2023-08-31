@@ -155,11 +155,11 @@
                 </li>
 
                 <li>
-                    <Nuxt-link to="/leave/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Allocation</Nuxt-link>
+                    <Nuxt-link to="/leave/allocation-list"><i class="bx bx-right-arrow-alt"></i>Leave Allocation</Nuxt-link>
                 </li>
 
                 <li>
-                    <Nuxt-link to="/leave/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Balance</Nuxt-link>
+                    <Nuxt-link to="/leave/leave-balance-list"><i class="bx bx-right-arrow-alt"></i>Leave Balance</Nuxt-link>
                 </li>
                 <li>
                     <Nuxt-link to="/holiday/holiday-list"><i class="bx bx-right-arrow-alt"></i>Leave Report</Nuxt-link>
