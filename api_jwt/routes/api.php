@@ -13,6 +13,7 @@ use App\Http\Controllers\Organogram\OrganogramController;
 use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
 use App\Http\Controllers\Leave\LeaveController;
+use App\Http\Controllers\Rota\RotaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -118,6 +119,8 @@ Route::group([
     //Job Publish
     Route::post('applyJob', [UnauthenticatedController::class, 'applyJob']);
     Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
+    Route::post('visitorRegistration', [UnauthenticatedController::class, 'visitorRegistration']);
+
 });
 Route::group([
     'middleware' => 'api',
@@ -231,6 +234,27 @@ Route::group([
     Route::get('getLeaveAllocatedList', [LeaveController::class, 'getLeaveAllocationList']);
     Route::get('getLeaveBalanceReport', [LeaveController::class, 'getLeaveBalanceReport']);
     Route::get('getLeaveReport', [LeaveController::class, 'getLeaveReport']);
+});
 
-
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'rota'
+], function () {
+    Route::post('createEditShift', [RotaController::class, 'createEditShift']);
+    Route::get('allShiftInfo', [RotaController::class, 'allShiftInfo']);
+    Route::get('getshiftManageRow/{id}', [RotaController::class, 'getshiftManageRow']);
+    //Late Policy
+    Route::post('createEditLatePolicy', [RotaController::class, 'createEditLatePolicy']);
+    Route::get('getAllLatePolicy', [RotaController::class, 'getAllLatePolicy']);
+    Route::get('getLatePolicyRow/{id}', [RotaController::class, 'getLatePolicyRow']);
+    //Grace Period
+    Route::post('createEditGracePeriod', [RotaController::class, 'createEditGracePeriod']);
+    Route::get('getAllGracePeriod', [RotaController::class, 'getAllGracePeriod']);
+    Route::get('getLateGracePolicyRow/{id}', [RotaController::class, 'getLateGracePolicyRow']);
+    //Duty Roster
+    Route::post('createEditDutyRoster', [RotaController::class, 'createEditDutyRoster']);
+    Route::get('getAllDutyRoster', [RotaController::class, 'getAllDutyRoster']);
+    Route::get('getDutyRosterRow/{id}', [RotaController::class, 'getDutyRosterRow']);
+    Route::get('getAllVisitorRegister', [RotaController::class, 'getAllVisitorRegister']);
+    
 });

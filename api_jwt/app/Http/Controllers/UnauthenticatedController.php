@@ -8,6 +8,7 @@ use Helper;
 use App\Models\User;
 use App\Models\Circumstances;
 use App\Models\Recruitment;
+use App\Models\RotaVisitorRegister;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -31,6 +32,47 @@ class UnauthenticatedController extends Controller
             'message' => 'success'
         ];
         return response()->json($response, 200);
+    }
+
+    //visitor register 
+    public function visitorRegistration(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'name'             => 'required',
+            'designation'      => 'required',
+            'email_id'         => 'required|email',
+            'contact_no'       => 'required',
+            'address'          => 'required',
+            'date'             => 'required',
+            'time'             => 'required',
+       
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+         
+        $data = new RotaVisitorRegister();
+        $data->name            = !empty($request->name) ? $request->name : "";
+        $data->designation     = !empty($request->designation) ? $request->designation : "";
+        $data->email_id        = !empty($request->email_id) ? $request->email_id : "";
+        $data->contact_no      = !empty($request->contact_no) ? $request->contact_no : "";
+        $data->address         = !empty($request->address) ? $request->address : "";
+        $data->date            = !empty($request->date) ? $request->date : "";
+        $data->time            = !empty($request->time) ? $request->time : "";
+        $data->reference       = !empty($request->reference) ? $request->reference : "";
+        $data->save();
+
+     
+        //dd($data);
+       // $id = DB::table('apply_job')->insertGetId($data);
+        $response = [
+            'message' => 'Successfully insert'
+        ];
+        return response()->json($response);
+
+
+
+
     }
     //Job Publish 
     public function applyJob(Request $request)

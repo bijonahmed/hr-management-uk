@@ -12,7 +12,7 @@
                                 <router-link to="/" href="javascript:;"><i class="bx bx-home-alt"></i></router-link>
                             </li>
                             <li class="breadcrumb-item" aria-current="page">
-                                <router-link to="/employee/employee-list">Task List</router-link>
+                                <router-link to="/task/task-list">Task List</router-link>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">New Task</li>
                         </ol>

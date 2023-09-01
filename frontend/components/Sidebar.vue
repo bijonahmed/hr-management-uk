@@ -166,6 +166,7 @@
                 </li>
             </ul>
         </li>
+
         <li>
             <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_7" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bx bx-category"></i>
@@ -245,6 +246,35 @@
                 </li>
                 <li>
                     <Nuxt-link to="/documents/new-documents"><i class="bx bx-right-arrow-alt"></i>Add Documents</Nuxt-link>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_32" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Rota</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_32" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/rota/shift-management-list"><i class="bx bx-right-arrow-alt"></i>Shift Management</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/rota/late-policy-list"><i class="bx bx-right-arrow-alt"></i>Late Policy</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/rota/day-off-list"><i class="bx bx-right-arrow-alt"></i>Day Off</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/rota/grace-period-list"><i class="bx bx-right-arrow-alt"></i>Grace Period</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/rota/duty-roster-list"><i class="bx bx-right-arrow-alt"></i>Duty Roster</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/rota/visitor-register-list"><i class="bx bx-right-arrow-alt"></i>Visitor Register</Nuxt-link>
                 </li>
             </ul>
         </li>

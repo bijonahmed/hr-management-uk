@@ -27,12 +27,11 @@ class LeaveController extends Controller
     }
     public function getLeaveBalanceReport()
     {
-       
         try {
-            $rows  = LeaveAllocation::select('leave_allocation.*', 'circumstances.name as emp_name','employee.employee_code')
-                    ->leftjoin('circumstances', 'circumstances.employe_id', '=', 'leave_allocation.employe_id')
-                    ->leftjoin('employee', 'employee.id', '=', 'circumstances.employe_id')
-                    ->get();
+            $rows  = LeaveAllocation::select('leave_allocation.*', 'circumstances.name as emp_name', 'employee.employee_code')
+                ->leftjoin('circumstances', 'circumstances.employe_id', '=', 'leave_allocation.employe_id')
+                ->leftjoin('employee', 'employee.id', '=', 'circumstances.employe_id')
+                ->get();
             $response = [
                 'data' => $rows,
                 'message' => 'success'
@@ -45,9 +44,8 @@ class LeaveController extends Controller
         }
         return response()->json($response, 200);
     }
-
-    public function getLeaveReport(Request $request){
-
+    public function getLeaveReport(Request $request)
+    {
         //$rows =  LeaveAllocation::getLeaveReport($request->all());
         //dd($rows);
         try {
@@ -63,13 +61,7 @@ class LeaveController extends Controller
             ];
         }
         return response()->json($response, 200);
-
-
     }
-
-
-
-
     public function createEditLeaveAllocation(Request $request)
     {
         $validator = Validator::make($request->all(), [

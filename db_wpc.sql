@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 30, 2023 at 08:25 PM
+-- Generation Time: Sep 01, 2023 at 10:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -644,6 +644,35 @@ INSERT INTO `designation` (`id`, `name`, `status`, `entry_by`, `created_at`) VAL
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `duty_roster`
+--
+
+CREATE TABLE `duty_roster` (
+  `id` int(11) NOT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `shift_id` int(11) DEFAULT NULL,
+  `from_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `duty_roster`
+--
+
+INSERT INTO `duty_roster` (`id`, `department_id`, `designation_id`, `shift_id`, `from_date`, `to_date`, `entry_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, 7, 9, 1, '2021-09-07', '2023-09-07', 1, 1, '2023-09-01 18:45:45', '2023-09-01 19:34:33'),
+(2, 2, 8, 4, '2023-09-07', '2023-09-07', 1, 1, '2023-09-01 18:46:09', '2023-09-01 18:46:09'),
+(3, 7, 8, 1, '2023-09-07', '2023-09-29', 1, 1, '2023-09-01 19:21:54', '2023-09-01 19:21:54'),
+(4, 6, 8, 2, '2023-09-07', '2023-09-22', 1, 1, '2023-09-01 19:22:23', '2023-09-01 19:22:23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `employee`
 --
 
@@ -900,6 +929,33 @@ INSERT INTO `generate_offer_letter` (`id`, `candidate_name`, `payment_type`, `of
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `grace_period`
+--
+
+CREATE TABLE `grace_period` (
+  `id` int(11) NOT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `shift_id` int(11) DEFAULT NULL,
+  `work_in_time` varchar(255) DEFAULT NULL,
+  `grace_period` varchar(255) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `grace_period`
+--
+
+INSERT INTO `grace_period` (`id`, `department_id`, `designation_id`, `shift_id`, `work_in_time`, `grace_period`, `entry_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, 7, 9, 1, '10:25', '02:02', 1, 1, '2023-09-01 18:45:45', '2023-09-01 18:53:21'),
+(2, 2, 8, 4, '10:25', '02:02', 1, 1, '2023-09-01 18:46:09', '2023-09-01 18:46:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `holiday`
 --
 
@@ -1057,6 +1113,35 @@ INSERT INTO `job_status` (`id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `late_policy`
+--
+
+CREATE TABLE `late_policy` (
+  `id` int(11) NOT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `shift_id` int(11) DEFAULT NULL,
+  `max_grade_period` varchar(255) DEFAULT NULL,
+  `no_days_allow` varchar(255) DEFAULT NULL,
+  `day_salary_deducted` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp(),
+  `entry_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `late_policy`
+--
+
+INSERT INTO `late_policy` (`id`, `department_id`, `designation_id`, `shift_id`, `max_grade_period`, `no_days_allow`, `day_salary_deducted`, `created_at`, `updated_at`, `entry_by`, `status`) VALUES
+(1, 7, 10, 2, '2222', '23', '23', '2023-09-01 15:02:00', '2023-09-01 15:42:46', 1, 1),
+(2, 4, 7, 2, '33', '33', '33', '2023-09-01 15:02:07', '2023-09-01 15:02:07', 1, 1),
+(3, 4, 7, 4, '55', '56', '5', '2023-09-01 15:02:18', '2023-09-01 15:02:18', 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lead`
 --
 
@@ -1107,9 +1192,13 @@ CREATE TABLE `leave_allocation` (
 --
 
 INSERT INTO `leave_allocation` (`id`, `employee_type`, `employe_id`, `year`, `maximum_no_annual`, `leave_type`, `leave_in_hand`, `effective_year`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'FULL TIME', 6, '2021', '265', 'Unauthorised Absence', '65', '2021', 1, '2023-08-30 17:47:18', '2023-08-30 17:47:18'),
+(1, 'FULL TIME', 6, '2024', '265', 'Unauthorised Absence', '65', '22222222222', 1, '2023-08-30 17:47:18', '2023-08-31 03:27:51'),
 (2, 'FULL TIME', 6, '2021', '265', 'Unauthorised Absence', '5', '2021', 1, '2023-08-30 17:47:18', '2023-08-30 17:47:18'),
-(3, 'FULL TIME', 6, '2026', '265', 'Unauthorised Absence', '70', '2022', 1, '2023-08-30 18:12:00', '2023-08-30 18:12:00');
+(3, 'FULL TIME', 6, '2026', '265', 'Unauthorised Absence', '70', '2022', 1, '2023-08-30 18:12:00', '2023-08-30 18:12:00'),
+(4, 'FULL TIME', 5, '2021', '265', 'Unauthorised Absence', '10', '2022', 1, '2023-08-31 03:34:26', '2023-08-31 03:34:26'),
+(5, 'FULL TIME', 5, '2023', '265', 'Unauthorised Absence', '5', '2023', 1, '2023-08-31 03:35:16', '2023-08-31 03:35:16'),
+(7, 'LEFT', 3, '2026', '150', 'Unauthorised Absence', '5', '2026', 1, '2023-08-31 03:48:27', '2023-08-31 03:48:27'),
+(8, 'LEFT', 3, '2024', '150', 'Unauthorised Absence', '145', '2014', 1, '2023-08-31 03:48:59', '2023-08-31 03:48:59');
 
 -- --------------------------------------------------------
 
@@ -1192,7 +1281,8 @@ CREATE TABLE `leave_rule` (
 
 INSERT INTO `leave_rule` (`id`, `employee_type_id`, `leave_type_id`, `maximum_no_annual`, `effective_from`, `effective_to`, `status`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, '265', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:01:21', '2023-08-30 16:40:56'),
-(2, 2, 7, '160', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:02:06', '2023-08-30 16:40:26');
+(2, 2, 7, '160', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:02:06', '2023-08-30 16:40:26'),
+(3, 5, 1, '150', '2024-01-01', '2024-12-31', 1, '2023-08-31 03:48:09', '2023-08-31 03:48:09');
 
 -- --------------------------------------------------------
 
@@ -1640,6 +1730,37 @@ INSERT INTO `send_message` (`id`, `candidate_name`, `candidate_email`, `subject`
 (7, 'Md. Gazi Giash Uddin', 'ib@gmail.com', 'New Subject', '', 'Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate Candidate', '/backend/files/88wrHYRxDG94tmZ0Endb.png', 1, '2023-08-19 06:31:37'),
 (8, 'Ibraheem', 'mdbijon@gmail.com', 'New Subject', '', 'ffff', '/backend/files/m6RklwhKmcSifwgvTfH0.png', 1, '2023-08-19 06:45:59'),
 (9, 'Abdur Rahman Ibraheem', 'mdbijon@gmail.com', 'New Subject', '', 'If you want to conditionally send an email with or without an attachment, you can modify your Mailable class to include the attachment only when a certain condition is met. Here\'s how you can achieve that:If you want to conditionally send an email with or without an attachment, you can modify your Mailable class to include the attachment only when a certain condition is met. Here\'s how you can achieve that:If you want to conditionally send an email with or without an attachment, you can modify your Mailable class to include the attachment only when a certain condition is met. Here\'s how you can achieve that:If you want to conditionally send an email with or without an attachment, you can modify your Mailable class to include the attachment only when a certain condition is met. Here\'s how you can achieve that:', '/backend/files/u1ujrkQMqTX6ES7VZh69.png', 1, '2023-08-19 06:50:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shift_manage`
+--
+
+CREATE TABLE `shift_manage` (
+  `id` int(11) NOT NULL,
+  `shift_code` varchar(255) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL,
+  `work_in_time` varchar(255) DEFAULT NULL,
+  `work_out_time` varchar(255) DEFAULT NULL,
+  `break_time_from` varchar(255) DEFAULT NULL,
+  `break_time_to` varchar(255) DEFAULT NULL,
+  `shift_description` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp(),
+  `entry_by` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shift_manage`
+--
+
+INSERT INTO `shift_manage` (`id`, `shift_code`, `department_id`, `designation_id`, `work_in_time`, `work_out_time`, `break_time_from`, `break_time_to`, `shift_description`, `created_at`, `updated_at`, `entry_by`, `status`) VALUES
+(1, 'SHIFT-001', 7, 9, '10:02', '12:02', '02:02', '02:02', 'SHIFT-001', '2023-09-01 13:44:54', '2023-09-01 14:18:25', 1, 1),
+(2, 'SHIFT-002', 6, 8, '10:02', '02:02', '15:22', '02:08', 'SHIFT-002', '2023-09-01 13:45:12', '2023-09-01 14:18:32', 1, 1),
+(4, 'SHIFT-003', 7, 9, '10:25', '10:02', '11:01', '12:05', 'SHIFT-003', '2023-09-01 13:45:41', '2023-09-01 14:18:38', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -2611,6 +2732,36 @@ INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `visitor_register`
+--
+
+CREATE TABLE `visitor_register` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `designation` varchar(255) DEFAULT NULL,
+  `email_id` varchar(255) DEFAULT NULL,
+  `contact_no` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` varchar(150) DEFAULT NULL,
+  `reference` varchar(150) DEFAULT NULL,
+  `created_at` date DEFAULT current_timestamp(),
+  `updated_at` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `visitor_register`
+--
+
+INSERT INTO `visitor_register` (`id`, `name`, `designation`, `email_id`, `contact_no`, `address`, `date`, `time`, `reference`, `created_at`, `updated_at`) VALUES
+(1, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
+(2, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
+(3, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
+(4, 'Jannat', 'Student', 'janant@gmail.com', '26598989', 'DHK', '2023-09-02', '10:25', 'sss', '2023-09-01', '2023-09-01');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `wedges_pay_mode`
 --
 
@@ -2686,6 +2837,12 @@ ALTER TABLE `designation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `duty_roster`
+--
+ALTER TABLE `duty_roster`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `employee`
 --
 ALTER TABLE `employee`
@@ -2724,6 +2881,12 @@ ALTER TABLE `generate_offer_letter`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `grace_period`
+--
+ALTER TABLE `grace_period`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `holiday`
 --
 ALTER TABLE `holiday`
@@ -2751,6 +2914,12 @@ ALTER TABLE `jobpublish`
 -- Indexes for table `job_status`
 --
 ALTER TABLE `job_status`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `late_policy`
+--
+ALTER TABLE `late_policy`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2877,6 +3046,13 @@ ALTER TABLE `send_message`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shift_manage`
+--
+ALTER TABLE `shift_manage`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `shift_code` (`shift_code`);
+
+--
 -- Indexes for table `sign_in_outs`
 --
 ALTER TABLE `sign_in_outs`
@@ -2910,6 +3086,12 @@ ALTER TABLE `type_of_documents`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `visitor_register`
+--
+ALTER TABLE `visitor_register`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2983,6 +3165,12 @@ ALTER TABLE `designation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `duty_roster`
+--
+ALTER TABLE `duty_roster`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
@@ -3019,6 +3207,12 @@ ALTER TABLE `generate_offer_letter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `grace_period`
+--
+ALTER TABLE `grace_period`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `holiday`
 --
 ALTER TABLE `holiday`
@@ -3049,6 +3243,12 @@ ALTER TABLE `job_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `late_policy`
+--
+ALTER TABLE `late_policy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `lead`
 --
 ALTER TABLE `lead`
@@ -3058,7 +3258,7 @@ ALTER TABLE `lead`
 -- AUTO_INCREMENT for table `leave_allocation`
 --
 ALTER TABLE `leave_allocation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `leave_applications`
@@ -3076,7 +3276,7 @@ ALTER TABLE `leave_list`
 -- AUTO_INCREMENT for table `leave_rule`
 --
 ALTER TABLE `leave_rule`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `leave_type`
@@ -3163,6 +3363,12 @@ ALTER TABLE `send_message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `shift_manage`
+--
+ALTER TABLE `shift_manage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `sign_in_outs`
 --
 ALTER TABLE `sign_in_outs`
@@ -3197,6 +3403,12 @@ ALTER TABLE `type_of_documents`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `visitor_register`
+--
+ALTER TABLE `visitor_register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `wedges_pay_mode`
