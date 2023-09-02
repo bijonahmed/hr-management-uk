@@ -14,6 +14,7 @@ use App\Http\Controllers\Setting\SettingController;
 use App\Http\Controllers\UnauthenticatedController;
 use App\Http\Controllers\Leave\LeaveController;
 use App\Http\Controllers\Rota\RotaController;
+use App\Http\Controllers\Attendance\AttendanceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -120,7 +121,6 @@ Route::group([
     Route::post('applyJob', [UnauthenticatedController::class, 'applyJob']);
     Route::get('checkPublishRow/{id}', [UnauthenticatedController::class, 'checkPublishRow']);
     Route::post('visitorRegistration', [UnauthenticatedController::class, 'visitorRegistration']);
-
 });
 Route::group([
     'middleware' => 'api',
@@ -225,8 +225,11 @@ Route::group([
     Route::post('createEditLeaveAllocation', [LeaveController::class, 'createEditLeaveAllocation']);
     Route::post('createEditLeavType', [LeaveController::class, 'createEditLeavType']);
     Route::get('getLeaveTypeList', [LeaveController::class, 'getLeaveTypeList']);
+    Route::get('getLeaveRequestList', [LeaveController::class, 'getLeaveRequestList']);
     Route::get('leaveTyperow/{id}', [LeaveController::class, 'leaveTyperow']);
+    Route::get('requestRowCheck/{id}', [LeaveController::class, 'requestRowCheck']);
     Route::post('createEditLeaveRule', [LeaveController::class, 'createEditLeaveRule']);
+    Route::post('leaveRequestUpdate', [LeaveController::class, 'leaveRequestUpdate']);
     Route::get('getLeaveRuleList', [LeaveController::class, 'getLeaveRuleList']);
     Route::get('leaveRulerow/{id}', [LeaveController::class, 'leaveRulerow']);
     Route::get('leaveAllocationRow/{id}', [LeaveController::class, 'leaveAllocationRow']);
@@ -235,7 +238,6 @@ Route::group([
     Route::get('getLeaveBalanceReport', [LeaveController::class, 'getLeaveBalanceReport']);
     Route::get('getLeaveReport', [LeaveController::class, 'getLeaveReport']);
 });
-
 Route::group([
     'middleware' => 'api',
     'prefix' => 'rota'
@@ -256,5 +258,12 @@ Route::group([
     Route::get('getAllDutyRoster', [RotaController::class, 'getAllDutyRoster']);
     Route::get('getDutyRosterRow/{id}', [RotaController::class, 'getDutyRosterRow']);
     Route::get('getAllVisitorRegister', [RotaController::class, 'getAllVisitorRegister']);
-    
+});
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'attendance'
+], function () {
+    Route::post('uploadDocuments', [AttendanceController::class, 'uploadDocuments']);
+    Route::get('getUploadAttendance', [AttendanceController::class, 'getUploadAttendance']);
+    //  Route::get('getshiftManageRow/{id}', [RotaController::class, 'getshiftManageRow']);
 });

@@ -11,6 +11,7 @@ use App\Models\LeaveType;
 use App\Models\LeaveRule;
 use App\Models\HolidayList;
 use App\Models\LeaveAllocation;
+use App\Models\LeaveRequest;
 use Illuminate\Support\Str;
 use App\Rules\MatchOldPassword;
 use Illuminate\Support\Facades\Hash;
@@ -101,6 +102,32 @@ class LeaveController extends Controller
             'message' => 'Successfull',
         ];
         return response()->json($response);
+    }
+
+
+    public function leaveRequestUpdate(Request $request){
+
+       // dd($request->all());
+        $validator = Validator::make($request->all(), [
+            'status'                => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if (empty($request->id)) {
+            $data = new LeaveRequest;
+            $data->save();
+        } else {
+            LeaveRequest::where('id', (int)$request->id)->update([
+                'status'              => !empty($request->status) ? $request->status : "",
+            ]);
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
+
+
     }
     public function createEditLeaveRule(Request $request)
     {
@@ -282,6 +309,27 @@ class LeaveController extends Controller
         }
         return response()->json($response, 200);
     }
+    public function getLeaveRequestList()
+    {
+        try {
+            $rows = LeaveRequest::join('employee_type', 'employee_type.id', '=', 'employee_leave_request.leave_type_id')
+                ->leftjoin('circumstances', 'circumstances.employe_id', '=', 'employee_leave_request.employe_id')
+                ->leftjoin('employee', 'employee.id', '=', 'circumstances.employe_id')
+                ->leftjoin('leave_type', 'leave_type.id', '=', 'employee_leave_request.leave_type_id')
+                ->select('employee_leave_request.*', 'employee.name as emp_name', 'employee.employee_code', 'leave_type.name as lev_type')
+                ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+    }
     public function getLeaveAllocationList()
     {
         try {
@@ -338,6 +386,20 @@ class LeaveController extends Controller
         ];
         return response()->json($response, 200);
     }
+
+
+    public function requestRowCheck($id)
+        {
+            $id = (int) $id;
+            $data = LeaveRequest::find($id);
+            $response = [
+                'data' => $data,
+                'message' => 'success'
+            ];
+            return response()->json($response, 200);
+        }
+
+    
     public function leaveRulerow($id)
     {
         $id = (int) $id;

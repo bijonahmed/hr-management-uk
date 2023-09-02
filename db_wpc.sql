@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2023 at 10:51 PM
+-- Generation Time: Sep 02, 2023 at 07:22 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -668,7 +668,8 @@ INSERT INTO `duty_roster` (`id`, `department_id`, `designation_id`, `shift_id`, 
 (1, 7, 9, 1, '2021-09-07', '2023-09-07', 1, 1, '2023-09-01 18:45:45', '2023-09-01 19:34:33'),
 (2, 2, 8, 4, '2023-09-07', '2023-09-07', 1, 1, '2023-09-01 18:46:09', '2023-09-01 18:46:09'),
 (3, 7, 8, 1, '2023-09-07', '2023-09-29', 1, 1, '2023-09-01 19:21:54', '2023-09-01 19:21:54'),
-(4, 6, 8, 2, '2023-09-07', '2023-09-22', 1, 1, '2023-09-01 19:22:23', '2023-09-01 19:22:23');
+(4, 6, 8, 2, '2023-09-07', '2023-09-22', 1, 1, '2023-09-01 19:22:23', '2023-09-01 19:22:23'),
+(5, 7, 9, 1, '2023-09-01', '2023-09-30', 1, 1, '2023-09-02 11:48:50', '2023-09-02 11:48:50');
 
 -- --------------------------------------------------------
 
@@ -860,6 +861,37 @@ CREATE TABLE `employee_holidays` (
 
 INSERT INTO `employee_holidays` (`id`, `employee_id`, `holiday`, `used_holiday`, `created_at`, `updated_at`) VALUES
 (1, 80, '28', 0, '2023-07-21 11:42:56', '2023-07-21 11:42:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employee_leave_request`
+--
+
+CREATE TABLE `employee_leave_request` (
+  `id` int(11) NOT NULL,
+  `employe_id` int(11) DEFAULT NULL,
+  `leave_type_id` int(11) DEFAULT NULL,
+  `frm_date` date DEFAULT NULL,
+  `to_date` date DEFAULT NULL,
+  `date_of_application` date DEFAULT NULL,
+  `no_of_leave` varchar(255) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL COMMENT '1=Approved 2=Reject. 	',
+  `remarks` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `employee_leave_request`
+--
+
+INSERT INTO `employee_leave_request` (`id`, `employe_id`, `leave_type_id`, `frm_date`, `to_date`, `date_of_application`, `no_of_leave`, `status`, `remarks`, `created_at`, `updated_at`) VALUES
+(1, 6, 1, '2023-09-02', '2023-09-07', '2023-09-02', '2', 1, NULL, '2023-09-02 19:43:31', '2023-09-02 15:06:15'),
+(2, 5, 1, '2023-09-02', '2023-09-07', '2023-09-02', '2', 1, NULL, '2023-09-02 19:43:31', '2023-09-02 19:43:31'),
+(3, 3, 1, '2023-09-02', '2023-09-07', '2023-09-02', '2', 1, NULL, '2023-09-02 19:43:31', '2023-09-02 19:43:31'),
+(4, 6, 1, '2023-09-02', '2023-09-07', '2023-09-02', '2', 1, NULL, '2023-09-02 19:43:31', '2023-09-02 19:43:31'),
+(5, 5, 1, '2023-09-02', '2023-09-07', '2023-09-02', '2', 1, NULL, '2023-09-02 19:43:31', '2023-09-02 19:43:31');
 
 -- --------------------------------------------------------
 
@@ -1280,7 +1312,7 @@ CREATE TABLE `leave_rule` (
 --
 
 INSERT INTO `leave_rule` (`id`, `employee_type_id`, `leave_type_id`, `maximum_no_annual`, `effective_from`, `effective_to`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '265', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:01:21', '2023-08-30 16:40:56'),
+(1, 1, 1, '265', '2023-01-01', '2023-12-31', 2, '2023-08-30 13:01:21', '2023-09-02 15:05:11'),
 (2, 2, 7, '160', '2023-01-01', '2023-12-31', 1, '2023-08-30 13:02:06', '2023-08-30 16:40:26'),
 (3, 5, 1, '150', '2024-01-01', '2024-12-31', 1, '2023-08-31 03:48:09', '2023-08-31 03:48:09');
 
@@ -2693,6 +2725,28 @@ INSERT INTO `type_of_documents` (`id`, `name`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `upload_attendance`
+--
+
+CREATE TABLE `upload_attendance` (
+  `id` int(11) NOT NULL,
+  `file` varchar(255) DEFAULT NULL,
+  `entry_by` int(11) DEFAULT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `upload_attendance`
+--
+
+INSERT INTO `upload_attendance` (`id`, `file`, `entry_by`, `status`, `created_at`, `updated_at`) VALUES
+(1, '/backend/files/pK2fTUB1qsOyGU7aAyam.csv', 1, 1, '2023-09-02 12:36:26', '2023-09-02 12:36:26');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -2725,7 +2779,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `employee_id`, `name`, `email`, `image`, `phone_number`, `address`, `website`, `github`, `twitter`, `instagram`, `facebook`, `show_password`, `email_verified_at`, `password`, `remember_token`, `entry_by`, `created_at`, `updated_at`, `status`) VALUES
-(1, 1, 4, 'Md. Gazi Uddin', 'admin@gmail.com', '/backend/files/2LRy0wweiDi1mISlUSyv.jpg', '343434', '', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
+(1, 1, 4, 'Md. Gazi Uddin', 'admin@gmail.com', '/backend/files/2LRy0wweiDi1mISlUSyv.jpg', '343434', 'Dhaka', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'http://localhost:3000/profile', 'admin', NULL, '$2a$12$KTM4o4shushdJtyHggJOEuoVzhTde88F2M2VZ1B89egoavVyQOycG', NULL, 1, '2023-06-22 03:20:43', '2023-07-14 04:47:21', 1),
 (2, 1, NULL, 'jonas', 'jonas@gmail.com', NULL, '234234', 'sss', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$2y$10$b.tEN9wEKcZfEHKfqvo2peiwWic44z3mKKe7TboP3nUeYO1zyPYoi', NULL, NULL, NULL, NULL, 1),
 (3, 3, NULL, 'aaaaaaa155', 'aaaaaaa@gmail.com', '/backend/files/b8JI42ZAQPstMGbEoUjh.png', '54877', 'adsfsdf', NULL, NULL, NULL, NULL, NULL, 'password ', NULL, '', NULL, 1, NULL, '2023-07-14 04:41:14', 1);
 
@@ -2745,8 +2799,8 @@ CREATE TABLE `visitor_register` (
   `date` date DEFAULT NULL,
   `time` varchar(150) DEFAULT NULL,
   `reference` varchar(150) DEFAULT NULL,
-  `created_at` date DEFAULT current_timestamp(),
-  `updated_at` date DEFAULT current_timestamp()
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -2754,10 +2808,10 @@ CREATE TABLE `visitor_register` (
 --
 
 INSERT INTO `visitor_register` (`id`, `name`, `designation`, `email_id`, `contact_no`, `address`, `date`, `time`, `reference`, `created_at`, `updated_at`) VALUES
-(1, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
-(2, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
-(3, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01', '2023-09-01'),
-(4, 'Jannat', 'Student', 'janant@gmail.com', '26598989', 'DHK', '2023-09-02', '10:25', 'sss', '2023-09-01', '2023-09-01');
+(1, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01 00:00:00', '2023-09-01 00:00:00'),
+(2, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01 00:00:00', '2023-09-01 00:00:00'),
+(3, 'Md. Gazi Giash Uddin Bijon', 'Programmer', 'mdbijon@gmail.com', '018945789788', 'Mirpur-1', '2023-09-28', '10:25', 'Reference', '2023-09-01 00:00:00', '2023-09-01 00:00:00'),
+(4, 'Jannat', 'Student', 'janant@gmail.com', '26598989', 'DHK', '2023-09-02', '10:25', 'sss', '2023-09-01 00:00:00', '2023-09-01 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -2860,6 +2914,12 @@ ALTER TABLE `employee_docs`
 ALTER TABLE `employee_holidays`
   ADD PRIMARY KEY (`id`),
   ADD KEY `idx_employee_holidays_used_holiday` (`used_holiday`);
+
+--
+-- Indexes for table `employee_leave_request`
+--
+ALTER TABLE `employee_leave_request`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `employee_type`
@@ -3083,6 +3143,12 @@ ALTER TABLE `type_of_documents`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `upload_attendance`
+--
+ALTER TABLE `upload_attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -3168,7 +3234,7 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `duty_roster`
 --
 ALTER TABLE `duty_roster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee`
@@ -3187,6 +3253,12 @@ ALTER TABLE `employee_docs`
 --
 ALTER TABLE `employee_holidays`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `employee_leave_request`
+--
+ALTER TABLE `employee_leave_request`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `employee_type`
@@ -3397,6 +3469,12 @@ ALTER TABLE `time`
 --
 ALTER TABLE `type_of_documents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `upload_attendance`
+--
+ALTER TABLE `upload_attendance`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -29,42 +29,33 @@
                 <li>
                     <Nuxt-link to="/employee/designation-list"><i class="bx bx-right-arrow-alt"></i>Designation</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/employee-type-list"><i class="bx bx-right-arrow-alt"></i>Employee Type</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/pay-group-list"><i class="bx bx-right-arrow-alt"></i>Pay Group</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/annual-pay-list"><i class="bx bx-right-arrow-alt"></i>Annual Pay</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/bank-master-list"><i class="bx bx-right-arrow-alt"></i>Bank Master</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/bank-short-code-list"><i class="bx bx-right-arrow-alt"></i>Bank ShortCode</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/tax-master-list"><i class="bx bx-right-arrow-alt"></i>Tax Master</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/payment-type-list"><i class="bx bx-right-arrow-alt"></i>Payment Type</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/setting/wedges-pay-list"><i class="bx bx-right-arrow-alt"></i>Wedges Pay Mode</Nuxt-link>
                 </li>
                 <li>
                     <Nuxt-link to="/setting/payroll-payitem-list"><i class="bx bx-right-arrow-alt"></i>Payroll Pay Item</Nuxt-link>
                 </li>
-
             </ul>
         </li>
         <li>
@@ -114,7 +105,6 @@
                 <div class="menu-title">Employee</div>
             </a>
             <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_3" style="width:100%;">
-
                 <li>
                     <Nuxt-link to="/employee/employee-list"><i class="bx bx-right-arrow-alt"></i>Employee</Nuxt-link>
                 </li>
@@ -140,7 +130,6 @@
                 </li>
             </ul>
         </li>
-
         <li>
             <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_30" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bx bx-category"></i>
@@ -153,11 +142,9 @@
                 <li>
                     <Nuxt-link to="/leave/leave-role-list"><i class="bx bx-right-arrow-alt"></i>Leave Rule</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/leave/allocation-list"><i class="bx bx-right-arrow-alt"></i>Leave Allocation</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/leave/leave-balance-list"><i class="bx bx-right-arrow-alt"></i>Leave Balance</Nuxt-link>
                 </li>
@@ -166,7 +153,6 @@
                 </li>
             </ul>
         </li>
-
         <li>
             <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_7" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bx bx-category"></i>
@@ -242,14 +228,23 @@
             </a>
             <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_6" style="width:100%;">
                 <li>
-                    <Nuxt-link to="/documents/documents-list"><i class="bx bx-right-arrow-alt"></i>Documents List</Nuxt-link>
+                    <Nuxt-link to="/documents/staff-report"><i class="bx bx-right-arrow-alt"></i>Staff Report</Nuxt-link>
                 </li>
                 <li>
-                    <Nuxt-link to="/documents/new-documents"><i class="bx bx-right-arrow-alt"></i>Add Documents</Nuxt-link>
+                    <Nuxt-link to="/documents/archive"><i class="bx bx-right-arrow-alt"></i>Archive </Nuxt-link>
                 </li>
+                <li>
+                    <Nuxt-link to="/organogram/organisation-hierarchy-list"><i class="bx bx-right-arrow-alt"></i>Organisation Report </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/documents/employee-report"><i class="bx bx-right-arrow-alt"></i>Employee Report </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/documents/employee-archive-report"><i class="bx bx-right-arrow-alt"></i>Employee Archive Report </Nuxt-link>
+                </li>
+
             </ul>
         </li>
-
         <li>
             <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_32" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="bx bx-category"></i>
@@ -262,11 +257,9 @@
                 <li>
                     <Nuxt-link to="/rota/late-policy-list"><i class="bx bx-right-arrow-alt"></i>Late Policy</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/rota/day-off-list"><i class="bx bx-right-arrow-alt"></i>Day Off</Nuxt-link>
                 </li>
-
                 <li>
                     <Nuxt-link to="/rota/grace-period-list"><i class="bx bx-right-arrow-alt"></i>Grace Period</Nuxt-link>
                 </li>
@@ -278,7 +271,111 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_33" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Attendence Management</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_33" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/attendence/upload-attendance"><i class="bx bx-right-arrow-alt"></i>Upload Attendence</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/attendence/generate-attendance"><i class="bx bx-right-arrow-alt"></i>Generate Attendence</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/attendence/daily-attendance"><i class="bx bx-right-arrow-alt"></i>Daily Attendance</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/attendence/attendence-history"><i class="bx bx-right-arrow-alt"></i>Attendence History</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/attendence/process-attendence"><i class="bx bx-right-arrow-alt"></i>Process Attendence</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/attendence/absent-report"><i class="bx bx-right-arrow-alt"></i>Absent Report</Nuxt-link>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_33" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Leave Approval</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_33" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/leave/leave-request-list"><i class="bx bx-right-arrow-alt"></i>Leave Request </Nuxt-link>
+                </li>
+            </ul>
+        </li>
 
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_34" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Sponsor Compliance</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_34" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/organisation/profile"><i class="bx bx-right-arrow-alt"></i>Organisation Profile</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/employee/employee-list"><i class="bx bx-right-arrow-alt"></i>All Employee List </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/employee/migrant-employee-list"><i class="bx bx-right-arrow-alt"></i>Migrant Employee List</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/employee/employee-list"><i class="bx bx-right-arrow-alt"></i>Right to Work checks </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/recruitment/dashboard"><i class="bx bx-right-arrow-alt"></i>Recruitment Process</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/leave/dashboard"><i class="bx bx-right-arrow-alt"></i>Leave Management </Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Key Contact</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Monitoring & Reporting </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Message Centre </Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/documents/employee-report"><i class="bx bx-right-arrow-alt"></i>Staff Report</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="/attendence/absent-report"><i class="bx bx-right-arrow-alt"></i>Absent Report</Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/employee/change-of-circumstances-list"><i class="bx bx-right-arrow-alt"></i>Change Of Circumstances</Nuxt-link>
+                </li>
+
+                <li>
+                    <Nuxt-link to="#"><i class="bx bx-right-arrow-alt"></i>Contract Agreement</Nuxt-link>
+                </li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="#" class="has-arrow nav-link dropdown-toggle" id="submenuDropdown_35" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bx bx-category"></i>
+                <div class="menu-title">Billing</div>
+            </a>
+            <ul class="menu dropdown-menu" aria-labelledby="submenuDropdown_35" style="width:100%;">
+                <li>
+                    <Nuxt-link to="/billing/billing-list"><i class="bx bx-right-arrow-alt"></i>Billing List </Nuxt-link>
+                </li>
+                <li>
+                    <Nuxt-link to="/billing/payment-receipt-list"><i class="bx bx-right-arrow-alt"></i>Payment Receipt </Nuxt-link>
+                </li>
+            </ul>
+        </li>
     </ul>
     <!--end navigation-->
 </div>
@@ -286,6 +383,10 @@
 </template>
 
 <style>
+.sidebar-wrapper .metismenu a .menu-title {
+    margin-left: 1px;
+}
+
 .sidebar-wrapper .metismenu a {
     position: relative;
     display: flex;
