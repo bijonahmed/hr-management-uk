@@ -26,6 +26,79 @@ class LeaveController extends Controller
         $user = User::find($id->id);
         $this->userid = $user->id;
     }
+
+
+
+    public function createEditLeaveRequest(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'leave_type_id'      => 'required',
+            'frm_date'           => 'required',
+            'to_date'            => 'required',
+            'no_of_leave'        => 'required',
+            'status'             => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+        if (empty($request->id)) {
+            $data = new LeaveRequest();
+            $data->employe_id           = $this->userid;
+            $data->leave_type_id        = $request->leave_type_id;
+            $data->frm_date             = $request->frm_date;
+            $data->to_date              = $request->to_date;
+            $data->no_of_leave          = $request->no_of_leave;
+            $data->status               = $request->status;
+            $data->remarks              = $request->remarks;
+            $data->date_of_application  =date("Y-m-d");
+            $data->save();
+        } else {
+            LeaveRequest::where('id', $request->id)->update([
+                'employe_id'           => $this->userid,
+                'leave_type_id'        => !empty($request->leave_type_id) ? $request->leave_type_id : "",
+                'frm_date'             => !empty($request->frm_date) ? $request->frm_date : "",
+                'to_date'              => !empty($request->to_date) ? $request->to_date : "",
+                'no_of_leave'          => !empty($request->no_of_leave) ? $request->no_of_leave : "",
+                'status'               => !empty($request->status) ? $request->status : "",
+                'remarks'              => !empty($request->remarks) ? $request->remarks : "",
+                'status'               => !empty($request->status) ? $request->status : "",
+            ]);
+        }
+        $response = [
+            'message' => 'Successfull',
+        ];
+        return response()->json($response);
+
+
+
+    }
+
+
+
+    public function getleaveApprovalList(){
+
+        try {
+            $rows = LeaveRequest::join('employee_type', 'employee_type.id', '=', 'employee_leave_request.leave_type_id')
+                    ->leftjoin('circumstances', 'circumstances.employe_id', '=', 'employee_leave_request.employe_id')
+                    ->leftjoin('employee', 'employee.id', '=', 'circumstances.employe_id')
+                    ->leftjoin('leave_type', 'leave_type.id', '=', 'employee_leave_request.leave_type_id')
+                    ->select('employee_leave_request.*', 'employee.name as emp_name', 'employee.employee_code', 'leave_type.name as lev_type')
+                    ->where('employee_leave_request.employe_id',$this->userid)
+                    ->get();
+            $response = [
+                'data' => $rows,
+                'message' => 'success'
+            ];
+        } catch (\Throwable $th) {
+            $response = [
+                'data' => [],
+                'message' => 'failed'
+            ];
+        }
+        return response()->json($response, 200);
+
+
+    }
     public function getLeaveBalanceReport()
     {
         try {
@@ -410,6 +483,18 @@ class LeaveController extends Controller
         ];
         return response()->json($response, 200);
     }
+
+    public function leaveApprovalRequestRow($id)
+        {
+            $id = (int) $id;
+            $data = LeaveRequest::find($id);
+            $response = [
+                'data' => $data,
+                'message' => 'success'
+            ];
+            return response()->json($response, 200);
+        }
+    
     public function leaveAllocationRow($id)
     {
         $id = (int) $id;

@@ -19,12 +19,14 @@ class CircumstancesController extends Controller
 {
     protected $frontend_url;
     protected $userid;
+    protected $role_id;
     public function __construct(Request $request)
     {
         $this->middleware('auth:api');
         $id = auth('api')->user();
         $user = User::find($id->id);
         $this->userid = $user->id;
+        $this->role_id = $user->role_id;
     }
     public function circumstancesRow($id)
     {
@@ -79,8 +81,9 @@ class CircumstancesController extends Controller
     }
     public function getCircumstancesList(Request $request)
     {
+        //echo "--------".$this->role_id;exit; 
         try {
-            $rows = Circumstances::filterEmployeeList($request->all());
+            $rows = Circumstances::filterEmployeeList($request->all(),$this->role_id,$this->userid);
             $response = [
                 'data' => $rows,
                 'message' => 'success'

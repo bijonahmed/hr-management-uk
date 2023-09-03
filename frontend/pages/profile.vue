@@ -128,7 +128,7 @@
                                                 <span class="mb-0">Website</span>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="url" class="form-control" v-model="insertdata.website" />
+                                                <input type="text" class="form-control" v-model="insertdata.website" />
 
                                             </div>
                                         </div>
@@ -137,7 +137,7 @@
                                                 <span class="mb-0">Github</span>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="url" class="form-control" v-model="insertdata.github" />
+                                                <input type="text" class="form-control" v-model="insertdata.github" />
 
                                             </div>
                                         </div>
@@ -146,7 +146,7 @@
                                                 <span class="mb-0">Twitter</span>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="url" class="form-control" v-model="insertdata.twitter" />
+                                                <input type="text" class="form-control" v-model="insertdata.twitter" />
 
                                             </div>
                                         </div>
@@ -155,7 +155,7 @@
                                                 <span class="mb-0">Instagram</span>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="url" class="form-control" v-model="insertdata.instagram" />
+                                                <input type="text" class="form-control" v-model="insertdata.instagram" />
 
                                             </div>
                                         </div>
@@ -164,7 +164,7 @@
                                                 <span class="mb-0">Facebook</span>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="url" class="form-control" v-model="insertdata.facebook" />
+                                                <input type="text" class="form-control" v-model="insertdata.facebook" />
 
                                             </div>
                                         </div>

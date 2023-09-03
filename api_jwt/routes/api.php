@@ -237,6 +237,11 @@ Route::group([
     Route::get('getLeaveAllocatedList', [LeaveController::class, 'getLeaveAllocationList']);
     Route::get('getLeaveBalanceReport', [LeaveController::class, 'getLeaveBalanceReport']);
     Route::get('getLeaveReport', [LeaveController::class, 'getLeaveReport']);
+    Route::get('getleaveApprovalList', [LeaveController::class, 'getleaveApprovalList']);
+    Route::post('createEditLeaveRequest', [LeaveController::class, 'createEditLeaveRequest']);
+    Route::get('leaveApprovalRequestRow/{id}', [LeaveController::class, 'leaveApprovalRequestRow']);
+
+    
 });
 Route::group([
     'middleware' => 'api',

@@ -31,6 +31,7 @@
                             <div class="input-group mb-3">
                                 <select class="form-select form-select-solid status" v-model="searchQuery.status" @change="handleSearch">
                                     <option value="" selected>All Status</option>
+                                    <option value="0">Pending</option>
                                     <option value="1">Approved</option>
                                     <option value="2">Rejected</option>
                                 </select>
@@ -75,8 +76,9 @@
                                     <td>{{ item.date_of_application }}</td>
                                     <td>{{ item.no_of_leave }}</td>
                                     <td class="text-center">
-                                        <span v-if="(item.status == 1)"> Approved </span>
-                                        <span v-else> Rejected </span>
+                                        <span v-if="(item.status == 0)"> Pending </span>
+                                        <span v-else-if="(item.status == 1)"> Approved</span>
+                                        <span v-else-if="(item.status == 2)"> Rejected</span>
                                     </td>
                                     <td>
                                         <center>
@@ -161,7 +163,7 @@ export default {
             data: [],
             searchQuery: {
                 emp_name: '',
-                status: 1
+                status: 0
             },
             searchQueryPhone: '',
             currentPage: 1,

@@ -41,7 +41,7 @@
                                             <label for="inputpassword_confirmation2" class="col-sm-3 col-form-label">Role</label>
                                             <div class="col-sm-9">
     
-                                                <select name="role_id" v-model="insertdata.id" class="form-select role_id">
+                                                <select name="role_id" v-model="insertdata.role_id" class="form-select role_id">
                                                     <option value="" selected>Select</option>
                                                     <option v-for='data in allrole' :value='data.id'>{{data.name}}</option>
                                                 </select>
@@ -188,6 +188,7 @@
             let id = this.$route.params.id;
             this.$axios.get(`/user/getUserRow/${id}`).then(response => {
                 console.log(response.data.data.name)
+                this.insertdata.role_id = response.data.data.role_id;
                 this.insertdata.id = response.data.data.id;
                 this.insertdata.name = response.data.data.name;
                 this.insertdata.phone = response.data.data.phone_number;

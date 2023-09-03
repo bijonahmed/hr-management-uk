@@ -16,13 +16,6 @@
                     </nav>
                 </div>
 
-
-        <div class="ms-auto">
-            <div class="btn-group">
-                <Nuxt-link to="/employee/change-of-circumstances-add"><button type="button" class="btn btn-primary"><i class="bx bx-plus"></i>New</button></Nuxt-link>
-            </div>
-        </div>
-        
             </div>
             <!--end breadcrumb-->
             <!-- <span class="loader"></span> -->
@@ -32,13 +25,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAoklEQVR4nOXVPQrCQBCG4adObWGlpYhlam9i7SU8SQ6hR/AEgl2u4DVkYEEJ2Zg1RUA/+GBgZ1/2b2Z5qUL9pSs9ioEWTaHbNLcXGAmlan4HeMMWpxR3Pf8Kj1hgn+Ku5wf+4aU0WOGQKbliYJ2Kfp1pCMXAnLpd6TIV+N6VrnhgORUYeRvcsfuUOAYYKwtYPKtRWxnyOW1zEBYq+QJ6zyz0BAaVSoEIYUgwAAAAAElFTkSuQmCC">Change Of Circumstances List</button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
-                                    <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"></path>
-                                </svg>
-                                Contract Agreement </button>
-                        </li>
+
                     </ul>
                     <br>
                     <div class="tab-content" id="myTabContent">
@@ -82,7 +69,7 @@
                                             <th>Designation</th>
                                             <th>Salary</th>
                                             <th class="text-center">Status</th>
-                                            <th class="text-center">Action</th>
+                                            <!-- <th class="text-center">Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -97,13 +84,12 @@
                                                 <span v-if="(item.status == 1)"> Active </span>
                                                 <span v-else> Inactive </span>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <center>
                                                     <nuxt-link :to="{name: 'employee-cir-edit-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-edit"></i>EDIT
                                                     </nuxt-link>
-                                                    <!-- <span @click="editCustomer(item.id)"><i class="bx bx-edit"></i>Edit</span> -->
                                                 </center>
-                                            </td>
+                                            </td> -->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -120,66 +106,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label for="inputPassword4">Employment Type</label>
-                                    <select name="employee_type" v-model="insertdata.employee_type" class="form-select" @change="getEmployee">
-                                        <option value="">Select</option>
-                                        <option value="FULL TIME">FULL TIME</option>
-                                        <option value="CONTRACTUAL">CONTRACTUAL</option>
-                                        <option value="SUSPEND">SUSPEND</option>
-                                        <option value="PART TIME">PART TIME</option>
-                                        <option value="LEFT">LEFT</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="inputPassword4">Employment</label>
-                                    <select name="employe_id" v-model="insertdata.employe_id" class="form-select employe_id">
-                                        <option value="">All</option>
-                                        <option v-for='data in emp_data' :value='data.employe_id'>{{ data.name }} [{{ data.employee_code }}]
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="col-md-3">
-                                    <br>
-                                    <button type="button" class="btn btn-primary w-100" @click="filterContractAgg">Filter</button>
-                                    <br>
-                                </div>
-                                <br>
 
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Phone</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Designation</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr v-for="item in report_data" :key="item.id">
-                                                <td>{{ item.name }}</td>
-                                                <td>{{ item.phone }}</td>
-                                                <td>{{ item.email }}</td>
-                                                <td>{{ item.dpt_name }}</td>
-                                                <td>{{ item.des_name }}</td>
-                                                <td>
-                                                    <center>
-                                                        <nuxt-link :to="{name: 'employee-cir-edit-id', params: {id: item.id}}" variant="warning" size="sm"><i class="bx bx-edit"></i>EDIT
-                                                        </nuxt-link>
-                                                        <!-- <span @click="editCustomer(item.id)"><i class="bx bx-edit"></i>Edit</span> -->
-                                                    </center>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -265,9 +192,6 @@ export default {
         async fetchData() {
             $(".customerSpinner").show();
             try {
-                let name = $(".name").val();
-                let status = $(".status").val();
-                //const response = await this.$axios.get('/customer/allCustomers?name=' + name + '&status=' + status);  
                 const response = await this.$axios.get(`/user/getCircumstancesList`);
                 this.data = response.data.data;
                 $(".customerSpinner").hide();

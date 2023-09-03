@@ -46,8 +46,9 @@ public static function contractAggrementFilter($data = array())
   }
 
   
-  public static function filterEmployeeList($data = array())
+  public static function filterEmployeeList($data = array(),$role_id,$user_id)
   {
+    //dd($role_id);
     $cond = '';
     $tbl = "circumstances";
     if (!empty($data['name'])) {
@@ -64,6 +65,10 @@ public static function contractAggrementFilter($data = array())
       $st = $data['status'];
     }
     $cond .= " AND $tbl.status IN({$st})";
+    if($role_id!==1){
+      $cond .= " AND $tbl.employe_id='" . $user_id . "'";
+    }
+
     $cond .= " ORDER BY id DESC ";
     $sqld = "SELECT $tbl.*,department.name as dpt_name,designation.name as des_name FROM `$tbl` 
              LEFT JOIN department ON department.id=$tbl.department_id

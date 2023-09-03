@@ -419,6 +419,7 @@ class UserController extends Controller
             'phone_number'  => !empty($request->phone) ? $request->phone : "",
             'email'         => !empty($request->email) ? $request->email : "",
             'password'      => !empty($request->password) ? Hash::make($request->password) : "",
+            'show_password' => $request->password,
             'status'        => $request->status,
             'entry_by'      => $this->userid,
         );
@@ -433,14 +434,18 @@ class UserController extends Controller
             $file_url = $uploadPath . $path;
             $data['image'] = $file_url;
         }
-        if (empty($request->id)) {
-            $userId = DB::table('users')->insertGetId($data);
-        } else {
-            $userId = $request->id;
-            DB::table('users')->where('id', $request->id)->update($data);
-        }
+
+
+        $userId = DB::table('users')->insertGetId($data);
+
+        // if (empty($request->id)) {
+        //     $userId = DB::table('users')->insertGetId($data);
+        // } else {
+        //     $userId = $request->id;
+        //     DB::table('users')->where('id', $request->id)->update($data);
+        // }
         $response = [
-            'message' => 'User register successfully insert UserID:' . $userId
+            'message' => 'Successfully Assign to User. UserID:' . $userId
         ];
         return response()->json($response);
     }
